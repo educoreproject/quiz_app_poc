@@ -61,13 +61,20 @@ body {
 
 .main { padding: clamp(18px, 4vw, 40px); max-width: 1180px; margin: 0 auto; }
 
-/* ---- Lock button ---- */
-.lock-btn {
-  margin-left: 4px; background: var(--panel); border: 1px solid var(--border);
-  color: var(--muted); width: 38px; height: 38px; border-radius: 10px; cursor: pointer;
-  font-size: 15px; transition: all .15s;
+/* ---- Profile button (topbar) ---- */
+.user-btn {
+  margin-left: 4px; display: inline-flex; align-items: center; gap: 8px;
+  background: var(--panel); border: 1px solid var(--border); color: var(--muted);
+  height: 38px; padding: 0 12px 0 6px; border-radius: 999px; cursor: pointer;
+  font-size: 13px; font-weight: 600; transition: all .15s;
 }
-.lock-btn:hover { color: var(--text); background: var(--panel-2); transform: translateY(-1px); }
+.user-btn:hover { color: var(--text); background: var(--panel-2); transform: translateY(-1px); }
+.user-avatar {
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff;
+  font-weight: 800; font-size: 13px;
+}
+.user-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ---- Login screen ---- */
 .login-screen {
@@ -81,6 +88,20 @@ body {
 .login-mark { font-size: 46px; filter: drop-shadow(0 6px 18px rgba(99,102,241,.55)); }
 .login-title { font-size: 26px; font-weight: 850; letter-spacing: -0.02em; margin: 10px 0 4px; }
 .login-sub { color: var(--muted); margin: 0 0 22px; }
+.login-profiles { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.login-profile {
+  display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 14px;
+  background: var(--bg-2); border: 1.5px solid var(--border); border-radius: 13px;
+  color: var(--text); font-size: 15px; font-weight: 600; cursor: pointer; text-align: left;
+  transition: border-color .15s, transform .15s;
+}
+.login-profile:hover { border-color: var(--accent); transform: translateY(-1px); }
+.lp-avatar {
+  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff;
+  font-weight: 800; font-size: 15px; flex: none;
+}
+.lp-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .login-input {
   width: 100%; padding: 14px 16px; border-radius: 13px; font-size: 16px;
   background: var(--bg-2); border: 1.5px solid var(--border); color: var(--text);

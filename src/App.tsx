@@ -7,11 +7,12 @@ import { Ring } from './components/Ring'
 import { Sparkline } from './components/Sparkline'
 import { Login } from './components/Login'
 import { SPEC_MAP } from './lib/specs'
-import { isUnlocked, lock, unlock } from './lib/auth'
+import { getActiveUser, login as loginUser, logout } from './lib/auth'
 import { LAYER_META } from './lib/types'
 import type { Layer, SpecKey } from './lib/types'
 import {
   bumpStreak,
+  emptyState,
   loadState,
   recordAnswer,
   resetState,
@@ -38,8 +39,11 @@ interface Session {
 }
 
 export default function App() {
-  const [authed, setAuthed] = useState<boolean>(() => isUnlocked())
-  const [state, setState] = useState<ProgressState>(() => loadState())
+  const [user, setUser] = useState<string | null>(() => getActiveUser())
+  const [state, setState] = useState<ProgressState>(() => {
+    const u = getActiveUser()
+    return u ? loadState(u) : emptyState()
+  })
   const [view, setView] = useState<View>('dashboard')
   const [session, setSession] = useState<Session | null>(null)
   const [lastResult, setLastResult] = useState<QuizResult | null>(null)
@@ -47,23 +51,39 @@ export default function App() {
 
   const today = todayKey()
 
-  // Ensure today's daily set exists.
+  // Ensure today's daily set exists (once a profile is active).
   useEffect(() => {
+    if (!user) return
     if (!state.daily || state.daily.date !== today) {
       mutate((s) => {
         s.daily = { date: today, questionIds: selectDaily(s, today), answers: {}, completed: false }
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   function mutate(fn: (s: ProgressState) => void) {
     setState((prev) => {
       const next: ProgressState = structuredClone(prev)
       fn(next)
-      saveState(next)
+      if (user) saveState(user, next)
       return next
     })
+  }
+
+  function handleLogin(name: string) {
+    const canonical = loginUser(name)
+    if (!canonical) return
+    setUser(canonical)
+    setState(loadState(canonical))
+    setView('dashboard')
+  }
+
+  function handleLogout() {
+    logout()
+    setUser(null)
+    setState(emptyState())
+    setView('dashboard')
   }
 
   const cells = useMemo(() => computeCells(state), [state])
@@ -115,8 +135,8 @@ export default function App() {
 
   // ---- Render ----
 
-  if (!authed) {
-    return <Login onUnlock={() => { unlock(); setAuthed(true) }} />
+  if (!user) {
+    return <Login onLogin={handleLogin} />
   }
 
   const dailyDone = state.daily?.completed
@@ -139,7 +159,10 @@ export default function App() {
           <div className="streak-pill" title="Daily streak">
             🔥 <b>{streakAlive(state) ? state.streak.current : 0}</b>
           </div>
-          <button className="lock-btn" title="Lock" onClick={() => { lock(); setAuthed(false) }}>🔒</button>
+          <button className="user-btn" title="Switch profile" onClick={handleLogout}>
+            <span className="user-avatar">{user.slice(0, 1).toUpperCase()}</span>
+            <span className="user-name">{user}</span>
+          </button>
         </nav>
       </header>
 
@@ -155,11 +178,11 @@ export default function App() {
             onStartDaily={startDaily}
             onOpenCell={openCell}
             onReset={() => {
-              if (confirm('Reset all progress and history? This cannot be undone.')) {
-                resetState()
-                const fresh = loadState()
+              if (confirm(`Reset all progress and history for ${user}? This cannot be undone.`)) {
+                resetState(user)
+                const fresh = loadState(user)
                 fresh.daily = { date: today, questionIds: selectDaily(fresh, today), answers: {}, completed: false }
-                saveState(fresh)
+                saveState(user, fresh)
                 setState(fresh)
               }
             }}

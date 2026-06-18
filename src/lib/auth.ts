@@ -1,79 +1,64 @@
-// Simple client-side passcode gate.
-//
-// SECURITY NOTE: this is a *soft gate* for a personal app, not real authentication.
-// Only the SHA-256 hash of the passcode ships in the bundle (never the passcode itself),
-// so the secret isn't sitting in plain sight — but a determined visitor could still
-// bypass a purely client-side check. For real multi-user security you'd need a backend.
+// Device-local profiles. No real authentication — each device remembers the
+// names that have been used on it and which one is currently active. Every
+// profile's scores are stored separately on the device (see storage.ts), so a
+// brand-new name starts with a clean slate.
 
-/** SHA-256 of the default passcode "educore". Override via VITE_PASSCODE_SHA256. */
-const DEFAULT_HASH = '0e3af99e947dd2b46eec47ee8d0bddedbaa086017bdfa2f2af838dd67db26776'
+const USERS_KEY = 'educore-users-v1'
+const ACTIVE_KEY = 'educore-active-user-v1'
 
-export const PASSCODE_HASH: string =
-  (import.meta.env.VITE_PASSCODE_SHA256 as string | undefined)?.trim() || DEFAULT_HASH
-
-export const USING_DEFAULT_PASSCODE = PASSCODE_HASH === DEFAULT_HASH
-
-const AUTH_KEY = 'educore-auth-v1'
-/** Stay unlocked for 30 days, then re-prompt. */
-const TTL_MS = 30 * 24 * 60 * 60 * 1000
-
-async function sha256Hex(input: string): Promise<string> {
-  const bytes = new TextEncoder().encode(input)
-  const digest = await crypto.subtle.digest('SHA-256', bytes)
-  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
-}
-
-/** True when the entered passcode matches the configured hash. */
-export async function verifyPasscode(input: string): Promise<boolean> {
-  if (!input) return false
+/** All profile names known on this device, in the order they were added. */
+export function listUsers(): string[] {
   try {
-    const hex = await sha256Hex(input)
-    return timingSafeEqual(hex, PASSCODE_HASH)
+    const raw = localStorage.getItem(USERS_KEY)
+    if (!raw) return []
+    const arr = JSON.parse(raw) as string[]
+    return Array.isArray(arr) ? arr.filter((u) => typeof u === 'string') : []
   } catch {
-    return false
+    return []
   }
 }
 
-/** Constant-time string compare (lengths are fixed hex digests). */
-function timingSafeEqual(a: string, b: string): boolean {
-  if (a.length !== b.length) return false
-  let diff = 0
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
-  return diff === 0
-}
-
-interface AuthToken {
-  hash: string
-  expires: number
-}
-
-/** Whether the current browser is unlocked (and not expired). */
-export function isUnlocked(): boolean {
+/** The currently logged-in profile on this device, or null if none. */
+export function getActiveUser(): string | null {
   try {
-    const raw = localStorage.getItem(AUTH_KEY)
-    if (!raw) return false
-    const tok = JSON.parse(raw) as AuthToken
-    // Invalidate the session if the passcode hash changed.
-    if (tok.hash !== PASSCODE_HASH) return false
-    if (Date.now() > tok.expires) return false
-    return true
+    return localStorage.getItem(ACTIVE_KEY) || null
   } catch {
-    return false
+    return null
   }
 }
 
-export function unlock() {
-  const tok: AuthToken = { hash: PASSCODE_HASH, expires: Date.now() + TTL_MS }
+/**
+ * Log in (creating the profile if it's new) and make it active.
+ * Matching is case-insensitive but preserves the original casing, so "brandon"
+ * and "Brandon" resolve to the same profile and the same saved scores.
+ * Returns the canonical name to use for loading/saving state.
+ */
+export function login(name: string): string {
+  const clean = name.trim()
+  if (!clean) return ''
+  const users = listUsers()
+  const existing = users.find((u) => u.toLowerCase() === clean.toLowerCase())
+  const canonical = existing ?? clean
+  if (!existing) {
+    users.push(canonical)
+    try {
+      localStorage.setItem(USERS_KEY, JSON.stringify(users))
+    } catch {
+      /* ignore quota errors */
+    }
+  }
   try {
-    localStorage.setItem(AUTH_KEY, JSON.stringify(tok))
+    localStorage.setItem(ACTIVE_KEY, canonical)
   } catch {
     /* ignore */
   }
+  return canonical
 }
 
-export function lock() {
+/** Log out — forget who's active, but keep every profile's saved scores. */
+export function logout() {
   try {
-    localStorage.removeItem(AUTH_KEY)
+    localStorage.removeItem(ACTIVE_KEY)
   } catch {
     /* ignore */
   }

@@ -1,63 +1,57 @@
 import { useState } from 'react'
-import { USING_DEFAULT_PASSCODE, verifyPasscode } from '../lib/auth'
+import { listUsers } from '../lib/auth'
 
 interface LoginProps {
-  onUnlock: () => void
+  onLogin: (name: string) => void
 }
 
-export function Login({ onUnlock }: LoginProps) {
-  const [code, setCode] = useState('')
-  const [error, setError] = useState(false)
-  const [checking, setChecking] = useState(false)
-  const [shake, setShake] = useState(false)
+export function Login({ onLogin }: LoginProps) {
+  const [name, setName] = useState('')
+  const users = listUsers()
+  const clean = name.trim()
+  const isReturning = users.some((u) => u.toLowerCase() === clean.toLowerCase())
 
-  async function submit(e: React.FormEvent) {
+  function submit(e: React.FormEvent) {
     e.preventDefault()
-    if (checking) return
-    setChecking(true)
-    setError(false)
-    const ok = await verifyPasscode(code)
-    setChecking(false)
-    if (ok) {
-      onUnlock()
-    } else {
-      setError(true)
-      setShake(true)
-      setCode('')
-      setTimeout(() => setShake(false), 500)
-    }
+    if (!clean) return
+    onLogin(clean)
   }
 
   return (
     <div className="login-screen">
-      <form className={`login-card ${shake ? 'shake' : ''}`} onSubmit={submit}>
+      <form className="login-card" onSubmit={submit}>
         <div className="login-mark">🎓</div>
         <h1 className="login-title">EDUcore Mastery</h1>
-        <p className="login-sub">Enter your passcode to continue.</p>
+        <p className="login-sub">
+          {users.length > 0
+            ? 'Pick your profile, or add a new name. Progress is saved on this device.'
+            : 'Enter your name to start. Your progress is saved on this device.'}
+        </p>
 
-        <input
-          className={`login-input ${error ? 'err' : ''}`}
-          type="password"
-          autoFocus
-          value={code}
-          placeholder="Passcode"
-          onChange={(e) => {
-            setCode(e.target.value)
-            setError(false)
-          }}
-          aria-label="Passcode"
-        />
-        {error && <div className="login-err">Incorrect passcode — try again.</div>}
-
-        <button className="btn primary block login-btn" type="submit" disabled={checking || !code}>
-          {checking ? 'Checking…' : 'Unlock →'}
-        </button>
-
-        {USING_DEFAULT_PASSCODE && (
-          <div className="login-hint">
-            Default passcode is <code>educore</code>. Set <code>VITE_PASSCODE_SHA256</code> to change it.
+        {users.length > 0 && (
+          <div className="login-profiles">
+            {users.map((u) => (
+              <button type="button" key={u} className="login-profile" onClick={() => onLogin(u)}>
+                <span className="lp-avatar">{u.slice(0, 1).toUpperCase()}</span>
+                <span className="lp-name">{u}</span>
+              </button>
+            ))}
           </div>
         )}
+
+        <input
+          className="login-input"
+          type="text"
+          autoFocus
+          value={name}
+          placeholder={users.length > 0 ? 'Or add a new name…' : 'Your name'}
+          onChange={(e) => setName(e.target.value)}
+          aria-label="Name"
+        />
+
+        <button className="btn primary block login-btn" type="submit" disabled={!clean}>
+          {isReturning ? 'Continue →' : 'Start →'}
+        </button>
       </form>
     </div>
   )

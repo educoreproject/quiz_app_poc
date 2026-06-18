@@ -33,7 +33,12 @@ export interface ProgressState {
   scoreHistory: { date: string; score: number }[]
 }
 
-const KEY = 'educore-mastery-v1'
+const KEY_PREFIX = 'educore-mastery-v1'
+
+/** Per-profile storage key, so each name keeps its own scores on the device. */
+function keyFor(user: string): string {
+  return `${KEY_PREFIX}::${user}`
+}
 
 export function emptyState(): ProgressState {
   return {
@@ -46,9 +51,9 @@ export function emptyState(): ProgressState {
   }
 }
 
-export function loadState(): ProgressState {
+export function loadState(user: string): ProgressState {
   try {
-    const raw = localStorage.getItem(KEY)
+    const raw = localStorage.getItem(keyFor(user))
     if (!raw) return emptyState()
     const parsed = JSON.parse(raw) as ProgressState
     return { ...emptyState(), ...parsed }
@@ -57,16 +62,16 @@ export function loadState(): ProgressState {
   }
 }
 
-export function saveState(s: ProgressState) {
+export function saveState(user: string, s: ProgressState) {
   try {
-    localStorage.setItem(KEY, JSON.stringify(s))
+    localStorage.setItem(keyFor(user), JSON.stringify(s))
   } catch {
     /* ignore quota errors */
   }
 }
 
-export function resetState() {
-  localStorage.removeItem(KEY)
+export function resetState(user: string) {
+  localStorage.removeItem(keyFor(user))
 }
 
 // ---- Date helpers ----------------------------------------------------------
