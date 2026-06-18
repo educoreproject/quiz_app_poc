@@ -1,0 +1,529 @@
+[
+  {
+    "id": "cip-dm-001",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "Taxonomy",
+    "question": "In CIP, what is the name of the top-level domain (family) with cipCode '11'?",
+    "options": [
+      "Computer And Information Sciences And Support Services",
+      "Engineering",
+      "Communications Technologies/Technicians And Support Services",
+      "Mathematics And Statistics"
+    ],
+    "answerIndex": 0,
+    "explanation": "CIP family '11' is 'Computer And Information Sciences And Support Services'. The 2-digit family is the broadest level of the CIP hierarchy.",
+    "source": "CipDomain: name='Computer And Information Sciences And Support Services', cipCode='11'"
+  },
+  {
+    "id": "cip-dm-002",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "Taxonomy",
+    "question": "Which CIP domain carries cipCode '13'?",
+    "options": [
+      "Psychology",
+      "Education",
+      "Library Science",
+      "Social Sciences"
+    ],
+    "answerIndex": 1,
+    "explanation": "CIP family '13' is 'Education'. CipDomain nodes store the 2-digit family code in both cipCode and cipFamily.",
+    "source": "CipDomain: name='Education', cipCode='13'"
+  },
+  {
+    "id": "cip-dm-003",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Hierarchy",
+    "question": "A CipProgram node stores a 6-digit cipCode. What is the cipCode for the program 'Computer Science'?",
+    "options": [
+      "11.0101",
+      "11.0201",
+      "11.0701",
+      "11.9999"
+    ],
+    "answerIndex": 2,
+    "explanation": "'Computer Science' is CIP program 11.0701. Six-digit codes identify specific instructional programs within a 4-digit subdomain.",
+    "source": "CipProgram: name='Computer Science', cipCode='11.0701'"
+  },
+  {
+    "id": "cip-dm-004",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Program",
+    "question": "Which CIP program is identified by cipCode '11.0102'?",
+    "options": [
+      "Information Technology",
+      "Artificial Intelligence",
+      "Informatics",
+      "Cloud Computing"
+    ],
+    "answerIndex": 1,
+    "explanation": "CIP 11.0102 is 'Artificial Intelligence'. Sibling programs in the 11.01 subdomain include Information Technology (11.0103) and Informatics (11.0104).",
+    "source": "CipProgram: name='Artificial Intelligence', cipCode='11.0102'"
+  },
+  {
+    "id": "cip-dm-005",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Program",
+    "question": "What is the cipCode of the CIP program 'Accounting'?",
+    "options": [
+      "52.0101",
+      "52.0201",
+      "52.0301",
+      "52.0801"
+    ],
+    "answerIndex": 2,
+    "explanation": "'Accounting' is CIP program 52.0301, within family 52 (Business, Management, Marketing, And Related Support Services).",
+    "source": "CipProgram: name='Accounting', cipCode='52.0301'"
+  },
+  {
+    "id": "cip-dm-006",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Program",
+    "question": "Which CIP program has cipCode '52.0201'?",
+    "options": [
+      "Business Administration And Management, General",
+      "Accounting",
+      "Agribusiness/Agricultural Business Operations",
+      "Information Technology Project Management"
+    ],
+    "answerIndex": 0,
+    "explanation": "CIP 52.0201 is 'Business Administration And Management, General'. It belongs to CIP family 52.",
+    "source": "CipProgram: name='Business Administration And Management, General', cipCode='52.0201'"
+  },
+  {
+    "id": "cip-dm-007",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Family",
+    "question": "The CIP program 'Registered Nursing/Registered Nurse' (51.3801) belongs to which cipFamily?",
+    "options": [
+      "26",
+      "44",
+      "51",
+      "52"
+    ],
+    "answerIndex": 2,
+    "explanation": "The first two digits of a program code equal its cipFamily. 51.3801 sits in family 51, 'Health Professions And Related Programs'.",
+    "source": "CipProgram: name='Registered Nursing/Registered Nurse', cipCode='51.3801', cipFamily='51'"
+  },
+  {
+    "id": "cip-dm-008",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Program",
+    "question": "Which CIP program is coded '26.0101'?",
+    "options": [
+      "Mathematics, General",
+      "Biology/Biological Sciences, General",
+      "Health And Wellness, General",
+      "Agriculture, General"
+    ],
+    "answerIndex": 1,
+    "explanation": "CIP 26.0101 is 'Biology/Biological Sciences, General', the introductory program in family 26 (Biological And Biomedical Sciences).",
+    "source": "CipProgram: name='Biology/Biological Sciences, General', cipCode='26.0101'"
+  },
+  {
+    "id": "cip-dm-009",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "Program",
+    "question": "What cipCode does CIP assign to the program 'Mathematics, General'?",
+    "options": [
+      "27.0101",
+      "26.0101",
+      "11.0701",
+      "40.0101"
+    ],
+    "answerIndex": 0,
+    "explanation": "'Mathematics, General' is CIP 27.0101, in family 27 (Mathematics And Statistics).",
+    "source": "CipProgram: name='Mathematics, General', cipCode='27.0101'"
+  },
+  {
+    "id": "cip-dm-010",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Hierarchy",
+    "question": "CIP has three hierarchical node levels. A CipSubdomain such as cipCode '11.01' represents which level of the taxonomy?",
+    "options": [
+      "The 2-digit family level",
+      "The 4-digit intermediate level",
+      "The 6-digit program level",
+      "An instructional-content cross-reference"
+    ],
+    "answerIndex": 1,
+    "explanation": "CipSubdomain nodes hold the 4-digit codes (e.g., 11.01) that group related 6-digit programs under a 2-digit family.",
+    "source": "CipSubdomain: cipCode='11.01', cipFamily='11'"
+  },
+  {
+    "id": "cip-dm-011",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Program",
+    "question": "Within the 11.10 subdomain, which CIP program carries cipCode '11.1003'?",
+    "options": [
+      "Network And System Administration/Administrator",
+      "Computer And Information Systems Security/Auditing/Information Assurance",
+      "Information Technology Project Management",
+      "Computer Support Specialist"
+    ],
+    "answerIndex": 1,
+    "explanation": "CIP 11.1003 is 'Computer And Information Systems Security/Auditing/Information Assurance'. Its siblings include 11.1001, 11.1005, and 11.1006.",
+    "source": "CipProgram: name='Computer And Information Systems Security/Auditing/Information Assurance', cipCode='11.1003'"
+  },
+  {
+    "id": "cip-dm-012",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Family",
+    "question": "Which CIP domain holds cipCode '52'?",
+    "options": [
+      "Public Administration And Social Service Professions",
+      "Health Professions And Related Programs",
+      "Business, Management, Marketing, And Related Support Services",
+      "Social Sciences"
+    ],
+    "answerIndex": 2,
+    "explanation": "CIP family 52 is 'Business, Management, Marketing, And Related Support Services'.",
+    "source": "CipDomain: name='Business, Management, Marketing, And Related Support Services', cipCode='52'"
+  },
+  {
+    "id": "cip-bound-001",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Boundary",
+    "question": "How is the CIP taxonomy distributed for use by data systems?",
+    "options": [
+      "As a REST API returning JSON program records",
+      "As flat tables (CSV) of hierarchical codes and titles",
+      "As a real-time streaming event feed",
+      "As an XML SOAP web service"
+    ],
+    "answerIndex": 1,
+    "explanation": "CIP (Classification of Instructional Programs) is a hierarchical code taxonomy published as flat tables (CSV). It defines no transport protocol or API of its own.",
+    "source": "CIP spec: hierarchical taxonomy distributed as flat tables (CSV); no transport, no API"
+  },
+  {
+    "id": "cip-bound-002",
+    "spec": "CIP",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Boundary",
+    "question": "Which statement about CIP's scope is correct?",
+    "options": [
+      "CIP defines a query API for retrieving program codes at runtime",
+      "CIP specifies a transport protocol for exchanging enrollment data",
+      "CIP is data-model only: a code taxonomy with no API or transport layer",
+      "CIP mandates a JSON message envelope for reporting completions"
+    ],
+    "answerIndex": 2,
+    "explanation": "CIP is purely a data-model standard: a 2/4/6-digit code taxonomy of instructional programs. It does not define any API or transport mechanism; those are supplied by consuming systems.",
+    "source": "CIP spec: DATA-MODEL ONLY; no transport protocol, no API"
+  },
+  {
+    "id": "sedm-dm-001",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "Element",
+    "question": "In SEDM, what does the SedmElement 'School Identifier' describe?",
+    "options": [
+      "A unique number or alphanumeric code assigned to an institution by a school, school system, a state, or other agency or entity",
+      "The full legally accepted name of the institution",
+      "The type of education institution as classified by its primary focus",
+      "An indication of the level of the education institution"
+    ],
+    "answerIndex": 0,
+    "explanation": "'School Identifier' (entity K12 School) is the unique code assigned to an institution. 'Name of Institution', 'School Type', and 'School Level' are separate elements.",
+    "source": "SedmElement: name='School Identifier', entity='K12 School', cedsGlobalId='001069'"
+  },
+  {
+    "id": "sedm-dm-002",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Element",
+    "question": "The SEDM element 'IDEA Educational Environment for Early Childhood' applies to children of what age range?",
+    "options": [
+      "Ages 6 through 21",
+      "Ages 3 through 5",
+      "Birth through age 2",
+      "Ages 16 through 21"
+    ],
+    "answerIndex": 1,
+    "explanation": "This element describes the program children ages 3 through 5 attend to receive special education and related services. The 6-through-21 range is covered by the school-age placement element.",
+    "source": "SedmElement: name='IDEA Educational Environment for Early Childhood', entity='Early Learning Child'"
+  },
+  {
+    "id": "sedm-dm-003",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Element scope",
+    "question": "What is the 'scope' value of the SEDM element 'Determination (Eligible y/n)'?",
+    "options": [
+      "core",
+      "uncertain",
+      "stateSpecific",
+      "global"
+    ],
+    "answerIndex": 2,
+    "explanation": "'Determination (Eligible y/n)' has scope 'stateSpecific', meaning it is defined for state-level reporting rather than the core cross-standard set.",
+    "source": "SedmElement: name='Determination (Eligible y/n)', scope='stateSpecific', entity='K12 Student'"
+  },
+  {
+    "id": "sedm-dm-004",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Element scope",
+    "question": "The SEDM element 'Student Identifier' carries which scope value in the graph?",
+    "options": [
+      "core",
+      "uncertain",
+      "stateSpecific",
+      "experimental"
+    ],
+    "answerIndex": 1,
+    "explanation": "'Student Identifier' (entity K12 Student) has scope 'uncertain' in SEDM, distinguishing it from confirmed 'core' elements like 'School Identifier'.",
+    "source": "SedmElement: name='Student Identifier', scope='uncertain', entity='K12 Student'"
+  },
+  {
+    "id": "sedm-dm-005",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Disability option set",
+    "question": "In the SEDM 'Primary Disability Type' option set, which disability does the code 'AUT' represent?",
+    "options": [
+      "Autism",
+      "Other health impairment",
+      "Traumatic brain injury",
+      "Visual impairment"
+    ],
+    "answerIndex": 0,
+    "explanation": "In the Primary Disability Type option set, 'AUT' = Autism. 'OHI', 'TBI', and 'VI' are separate codes in the same set.",
+    "source": "SedmOptionValue: code='AUT' = 'Autism' in option set 'Primary Disability Type'"
+  },
+  {
+    "id": "sedm-dm-006",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Disability option set",
+    "question": "Which SEDM Primary Disability Type code stands for 'Specific learning disability'?",
+    "options": [
+      "SLI",
+      "SLD",
+      "ID",
+      "DD"
+    ],
+    "answerIndex": 1,
+    "explanation": "'SLD' = Specific learning disability. Easily confused siblings are 'SLI' (Speech or language impairment), 'ID' (Intellectual Disability), and 'DD' (Developmental delay).",
+    "source": "SedmOptionValue: code='SLD' = 'Specific learning disability'"
+  },
+  {
+    "id": "sedm-dm-007",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Disability option set",
+    "question": "In SEDM, what disability is denoted by the code 'DB'?",
+    "options": [
+      "Developmental delay",
+      "Deaf-blindness",
+      "Multiple disabilities",
+      "Hearing impairment"
+    ],
+    "answerIndex": 1,
+    "explanation": "'DB' = Deaf-blindness. Compare with 'DD' (Developmental delay), 'MD' (Multiple disabilities), and 'HI' (Hearing impairment).",
+    "source": "SedmOptionValue: code='DB' = 'Deaf-blindness'"
+  },
+  {
+    "id": "sedm-dm-008",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "IEP component",
+    "question": "SEDM IEP component number 10 carries which age requirement?",
+    "options": [
+      "Beginning at age 3",
+      "Beginning not later than age 16",
+      "Birth through age 2",
+      "Ending at age 21"
+    ],
+    "answerIndex": 1,
+    "explanation": "SedmIepComponent number 10 records the transition-planning requirement 'Beginning not later than age 16'. Most other IEP components carry no age requirement.",
+    "source": "SedmIepComponent: number=10, ageRequirement='Beginning not later than age 16'"
+  },
+  {
+    "id": "sedm-dm-009",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Compliance category",
+    "question": "Which SEDM compliance category maps to IDEA indicator numbers 13 and 14?",
+    "options": [
+      "Identification",
+      "Issue Resolution",
+      "IEP Transfer and PS Transition Planning",
+      "Oversight"
+    ],
+    "answerIndex": 2,
+    "explanation": "'IEP Transfer and PS Transition Planning' lists ideaIndicatorNumbers [13, 14]. 'Issue Resolution' maps to [15, 16] and 'Oversight' to [8, 17, 18].",
+    "source": "SedmComplianceCategory: name='IEP Transfer and PS Transition Planning', ideaIndicatorNumbers=[13,14]"
+  },
+  {
+    "id": "sedm-dm-010",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Compliance category",
+    "question": "The SEDM 'Discipline' compliance category maps to which single IDEA indicator number?",
+    "options": [
+      "3",
+      "4",
+      "11",
+      "8"
+    ],
+    "answerIndex": 1,
+    "explanation": "'Discipline' maps to IDEA indicator [4]. 'Academic Performance' maps to [3], 'Initial Referral and Evaluation' to [11].",
+    "source": "SedmComplianceCategory: name='Discipline', ideaIndicatorNumbers=[4]"
+  },
+  {
+    "id": "sedm-dm-011",
+    "spec": "SEDM",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Event milestone",
+    "question": "Which SEDM event milestone is marked as NOT IDEA-required (ideaRequired = false)?",
+    "options": [
+      "Evaluation Complete",
+      "IEP Team Initially Convened",
+      "Manifestation Determination",
+      "Service Begins"
+    ],
+    "answerIndex": 1,
+    "explanation": "'IEP Team Initially Convened' has ideaRequired = false, whereas 'Evaluation Complete', 'Manifestation Determination', and 'Service Begins' are all IDEA-required.",
+    "source": "SedmEventMilestone: name='IEP Team Initially Convened', ideaRequired=false"
+  },
+  {
+    "id": "sedm-trans-001",
+    "spec": "SEDM",
+    "layer": "transport",
+    "difficulty": "intro",
+    "concept": "ETL delivery",
+    "question": "How is SEDM data delivered to federal reporting systems?",
+    "options": [
+      "Via CSV ETL templates aligned to EDFacts/IDEA reporting",
+      "Via a GraphQL endpoint queried in real time",
+      "Via printed PDF compliance reports",
+      "Via a WebSocket event stream"
+    ],
+    "answerIndex": 0,
+    "explanation": "SEDM (Special Education Data Model) is transported through CSV ETL templates aligned to EDFacts/IDEA reporting requirements.",
+    "source": "SEDM spec: delivered via CSV ETL templates aligned to EDFacts/IDEA reporting"
+  },
+  {
+    "id": "sedm-trans-002",
+    "spec": "SEDM",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "ETL template",
+    "question": "Which of the following is a defined SEDM ETL template?",
+    "options": [
+      "Enrollment Streaming ETL",
+      "Child Count ETL",
+      "Realtime Webhook ETL",
+      "Transcript Push ETL"
+    ],
+    "answerIndex": 1,
+    "explanation": "'Child Count ETL' is one of SEDM's CSV ETL templates. Others include Discipline ETL, Exiting ETL, and Directory ETL.",
+    "source": "SedmEtlTemplate: name='Child Count ETL'"
+  },
+  {
+    "id": "sedm-trans-003",
+    "spec": "SEDM",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "ETL template",
+    "question": "Which SEDM ETL template would carry charter-school directory attributes?",
+    "options": [
+      "Title I ETL",
+      "Personnel ETL",
+      "Charter ETL",
+      "Assessment ETL"
+    ],
+    "answerIndex": 2,
+    "explanation": "The 'Charter ETL' template is the SEDM CSV template for charter-related data. Title I, Personnel, and Assessment ETLs cover different reporting domains.",
+    "source": "SedmEtlTemplate: name='Charter ETL'"
+  },
+  {
+    "id": "sedm-trans-004",
+    "spec": "SEDM",
+    "layer": "transport",
+    "difficulty": "advanced",
+    "concept": "ETL template",
+    "question": "SEDM provides two directory-oriented ETL templates. Which pair are both real SEDM templates?",
+    "options": [
+      "Directory ETL and Directory Lite ETL",
+      "Directory ETL and Directory Stream ETL",
+      "Directory Full ETL and Directory Lite ETL",
+      "Directory ETL and Directory JSON ETL"
+    ],
+    "answerIndex": 0,
+    "explanation": "SEDM defines both 'Directory ETL' and 'Directory Lite ETL' as CSV templates. The other options are not SEDM template names.",
+    "source": "SedmEtlTemplate: name='Directory ETL'; SedmEtlTemplate: name='Directory Lite ETL'"
+  },
+  {
+    "id": "sedm-trans-005",
+    "spec": "SEDM",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Indicator data source",
+    "question": "SEDM indicators reference their EDFacts data source. Which data source feeds indicators 7 and 8?",
+    "options": [
+      "FS-009",
+      "FS-002",
+      "State Selected Data",
+      "EMAPS Survey"
+    ],
+    "answerIndex": 2,
+    "explanation": "SEDM indicators 7 and 8 both draw on 'State Selected Data'. Indicators 1 and 2 use FS-009, and indicators 15 and 16 use the EMAPS Survey.",
+    "source": "SedmIndicator: number=7, dataSource='State Selected Data'; number=8, dataSource='State Selected Data'"
+  },
+  {
+    "id": "sedm-api-001",
+    "spec": "SEDM",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Boundary",
+    "question": "What API does SEDM define for exchanging special education data?",
+    "options": [
+      "A REST API with OAuth2 endpoints per entity",
+      "A standalone SEDM query API published by the U.S. Department of Education",
+      "No standalone API; SEDM relies on CSV ETL templates rather than a live API",
+      "A GraphQL schema mirroring the IEP components"
+    ],
+    "answerIndex": 2,
+    "explanation": "SEDM does not define a standalone API. Data exchange is handled through CSV ETL templates aligned to EDFacts/IDEA reporting, not a live service interface.",
+    "source": "SEDM spec: no standalone API; transport via CSV ETL templates"
+  }
+]

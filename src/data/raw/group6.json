@@ -1,0 +1,475 @@
+[
+  {
+    "id": "jedx-dm-001",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "JEDx Entities",
+    "question": "Which of the following is a top-level entity defined in the JEDx data model?",
+    "options": ["enrollment", "worker", "transcript", "credential"],
+    "answerIndex": 1,
+    "explanation": "JEDx defines entities such as worker, organization, job, worker_compensation_report, and worker_paid_hours_report. Enrollment, transcript, and credential are not JEDx entities.",
+    "source": "JedxEntity: worker"
+  },
+  {
+    "id": "jedx-dm-002",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "JEDx Entities",
+    "question": "Which JEDx entity holds employer-level information such as address and identifiers?",
+    "options": ["worker", "job", "organization", "worker_paid_hours_report"],
+    "answerIndex": 2,
+    "explanation": "The organization entity carries employer-level fields (e.g., city, postalCode, formattedAddress) and is referenced by other entities through foreign keys.",
+    "source": "JedxEntity: organization (39 fields, hasPk=true)"
+  },
+  {
+    "id": "jedx-dm-003",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Primary Keys",
+    "question": "In the JEDx data model, what is true of every defined entity (worker, organization, job, etc.)?",
+    "options": [
+      "Each entity has a primary key",
+      "No entity has a primary key",
+      "Only the organization entity has a primary key",
+      "Primary keys are optional and rarely present"
+    ],
+    "answerIndex": 0,
+    "explanation": "JEDx is a relational-style model: each entity (worker, organization, job, worker_compensation_report, worker_paid_hours_report) has hasPk=true, i.e., a primary key.",
+    "source": "JedxEntity: hasPk=true for all entities"
+  },
+  {
+    "id": "jedx-dm-004",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Foreign Keys",
+    "question": "Which JEDx field is a foreign key linking a worker to its employer?",
+    "options": ["workerRefId", "organizationRefId", "receiverId", "jobId"],
+    "answerIndex": 1,
+    "explanation": "organizationRefId is a foreign key (isForeignKey=true) that references the associated organization for the worker.",
+    "source": "JedxField: organizationRefId (isForeignKey=true)"
+  },
+  {
+    "id": "jedx-dm-005",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Foreign Keys",
+    "question": "Which JEDx field is the foreign key that ties a report back to its associated worker?",
+    "options": ["organizationRefId", "senderId", "workerRefId", "RefId"],
+    "answerIndex": 2,
+    "explanation": "workerRefId is a foreign key (isForeignKey=true) that references the associated worker for a report.",
+    "source": "JedxField: workerRefId (isForeignKey=true)"
+  },
+  {
+    "id": "jedx-dm-006",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Field Types",
+    "question": "What is the data type of the JEDx field 'regularHoursWorked'?",
+    "options": ["string", "boolean", "number", "date"],
+    "answerIndex": 2,
+    "explanation": "regularHoursWorked is typed as number and records the hours a worker was engaged in a regular paid work activity.",
+    "source": "JedxField: regularHoursWorked (type=number)"
+  },
+  {
+    "id": "jedx-dm-007",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Field Types",
+    "question": "The JEDx field 'isMulti-state', which indicates a business has employees in multiple reporting states, is of what type?",
+    "options": ["number", "boolean", "string", "array"],
+    "answerIndex": 1,
+    "explanation": "isMulti-state is a boolean flag indicating whether the business has employees in multiple states subject to reporting.",
+    "source": "JedxField: isMulti-state (type=boolean)"
+  },
+  {
+    "id": "jedx-dm-008",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Code Sets",
+    "question": "Which value belongs to a JEDx code set used by a currency field?",
+    "options": ["US", "USD", "en-US", "FOT"],
+    "answerIndex": 1,
+    "explanation": "USD is the JEDx code-set value for currency/currencyCode fields. US is a country code, en-US a language code, and FOT a unit-of-measure code.",
+    "source": "JedxCodeSet: USD (used by currency fields)"
+  },
+  {
+    "id": "jedx-dm-009",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Code Sets",
+    "question": "The JEDx field 'languageCode' uses which code-set value to denote U.S. English?",
+    "options": ["US", "USD", "en-US", "state"],
+    "answerIndex": 2,
+    "explanation": "languageCode carries the value en-US to specify the language of the text. USD is currency and US is a country code.",
+    "source": "JedxCodeSet: en-US (used by languageCode)"
+  },
+  {
+    "id": "jedx-dm-010",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Code Sets",
+    "question": "Which JEDx code-set value is associated with the 'unitCode' (unit of measure) field?",
+    "options": ["BasePay", "Holiday", "FOT", "OtherPremium"],
+    "answerIndex": 2,
+    "explanation": "FOT is the code-set value used by the unitCode (unit of measure) field. BasePay, Holiday, and OtherPremium are pay-type code values.",
+    "source": "JedxField: unitCode (codeSet=FOT)"
+  },
+  {
+    "id": "jedx-dm-011",
+    "spec": "JEDx",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Code Sets",
+    "question": "Which code-set value is used by the JEDx 'workedPayTypeCode' field on the worker compensation report?",
+    "options": ["BasePay", "Holiday", "OtherPremium", "FOT"],
+    "answerIndex": 0,
+    "explanation": "workedPayTypeCode uses the BasePay code-set value. Holiday is a time-off pay type and OtherPremium is a separate pay-type code.",
+    "source": "JedxField: workedPayTypeCode (codeSet=BasePay)"
+  },
+  {
+    "id": "jedx-tr-001",
+    "spec": "JEDx",
+    "layer": "transport",
+    "difficulty": "intro",
+    "concept": "Serialization",
+    "question": "In what format does JEDx serialize its data exchange messages?",
+    "options": ["XML", "JSON", "CSV", "Fixed-width text"],
+    "answerIndex": 1,
+    "explanation": "JEDx (Jobs & Employment Data Exchange) serializes as JSON.",
+    "source": "JEDx transport: serializes as JSON"
+  },
+  {
+    "id": "jedx-tr-002",
+    "spec": "JEDx",
+    "layer": "transport",
+    "difficulty": "medium",
+    "concept": "Model Style",
+    "question": "How is the JEDx data model best characterized for transport purposes?",
+    "options": [
+      "A graph model with no keys",
+      "A relational-style model with primary keys and foreign-key references",
+      "A free-text document model",
+      "A key-value cache"
+    ],
+    "answerIndex": 1,
+    "explanation": "JEDx is a relational-style model: entities carry primary keys and reference one another via foreign keys (e.g., organizationRefId, workerRefId).",
+    "source": "JEDx transport: relational-style model with PKs and FKs"
+  },
+  {
+    "id": "jedx-tr-003",
+    "spec": "JEDx",
+    "layer": "transport",
+    "difficulty": "medium",
+    "concept": "Message Routing",
+    "question": "Which pair of JEDx fields identifies the parties to a data-exchange message?",
+    "options": [
+      "senderId and receiverId",
+      "latitude and longitude",
+      "firstName and family",
+      "currency and unitCode"
+    ],
+    "answerIndex": 0,
+    "explanation": "JEDx messages carry senderId and receiverId reference fields to identify the sender and receiver of the exchange.",
+    "source": "JedxField: senderId, receiverId"
+  },
+  {
+    "id": "jedx-tr-004",
+    "spec": "JEDx",
+    "layer": "transport",
+    "difficulty": "hard",
+    "concept": "Object References",
+    "question": "What is the purpose of the 'RefId' field that appears on JEDx root objects?",
+    "options": [
+      "It stores the worker's birth date",
+      "It is the reference Id for the root object",
+      "It encodes the currency of a payment",
+      "It is the URL of a privacy document"
+    ],
+    "answerIndex": 1,
+    "explanation": "RefId is the reference Id for the root object, used so JEDx objects can be referenced relationally within and across messages.",
+    "source": "JedxField: RefId (Reference Id for the root object)"
+  },
+  {
+    "id": "jedx-tr-005",
+    "spec": "JEDx",
+    "layer": "transport",
+    "difficulty": "hard",
+    "concept": "Privacy Metadata",
+    "question": "What does the JEDx 'podURL' field reference?",
+    "options": [
+      "A podcast feed",
+      "The URL of the Privacy Obligation Document (POD)",
+      "A point-of-delivery shipping code",
+      "The organization's payroll endpoint"
+    ],
+    "answerIndex": 1,
+    "explanation": "podURL holds the URL of the POD (Privacy Obligation Document) associated with the data exchange.",
+    "source": "JedxField: podURL (URL of the POD / Privacy Obligation Document)"
+  },
+  {
+    "id": "jedx-api-001",
+    "spec": "JEDx",
+    "layer": "api",
+    "difficulty": "medium",
+    "concept": "API Boundary",
+    "question": "Does the JEDx specification, as represented in the knowledge graph, define a standalone REST API?",
+    "options": [
+      "Yes, a full REST API with documented endpoints",
+      "Yes, a GraphQL API",
+      "No, JEDx is a data-exchange model/schema, not a service API",
+      "Yes, a SOAP web service"
+    ],
+    "answerIndex": 2,
+    "explanation": "JEDx has no standalone REST API in the graph. It is a JSON data-exchange model/schema (entities, fields, code sets), not a service API with endpoints.",
+    "source": "JEDx boundary: data-exchange model, no standalone REST API"
+  },
+  {
+    "id": "jedx-api-002",
+    "spec": "JEDx",
+    "layer": "api",
+    "difficulty": "hard",
+    "concept": "API Boundary",
+    "question": "If you needed JEDx data, what does the specification actually provide rather than a queryable API service?",
+    "options": [
+      "A set of REST endpoints to call",
+      "A JSON schema of entities, fields, and code sets to exchange",
+      "An OAuth token service",
+      "A WebSocket streaming interface"
+    ],
+    "answerIndex": 1,
+    "explanation": "JEDx defines a JSON data-exchange schema (entities with primary keys, fields, and code sets) for serializing and exchanging data; it does not expose a queryable service API.",
+    "source": "JEDx boundary: schema/data-exchange model, not a service API"
+  },
+  {
+    "id": "soc-dm-001",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "Occupation Codes",
+    "question": "What is the SOC base code for the occupation 'Registered Nurses'?",
+    "options": ["15-1252", "29-1141", "47-2111", "11-1011"],
+    "answerIndex": 1,
+    "explanation": "Registered Nurses are classified under SOC base code 29-1141, within the healthcare practitioner major group (29).",
+    "source": "SocOccupation: Registered Nurses (baseCode 29-1141)"
+  },
+  {
+    "id": "soc-dm-002",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "Occupation Codes",
+    "question": "Which SOC occupation carries the base code 11-1011?",
+    "options": ["Lawyers", "Chief Executives", "Carpenters", "Software Developers"],
+    "answerIndex": 1,
+    "explanation": "Chief Executives are classified under SOC base code 11-1011, in the management major group (11).",
+    "source": "SocOccupation: Chief Executives (baseCode 11-1011)"
+  },
+  {
+    "id": "soc-dm-003",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Occupation Codes",
+    "question": "What is the SOC base code for 'Software Developers'?",
+    "options": ["15-1251", "15-1252", "13-2011", "23-1011"],
+    "answerIndex": 1,
+    "explanation": "Software Developers use SOC base code 15-1252. The adjacent code 15-1251 belongs to Computer Programmers.",
+    "source": "SocOccupation: Software Developers (baseCode 15-1252)"
+  },
+  {
+    "id": "soc-dm-004",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Occupation Codes",
+    "question": "Which occupation is assigned SOC base code 15-1251?",
+    "options": ["Software Developers", "Computer Programmers", "Accountants and Auditors", "Electricians"],
+    "answerIndex": 1,
+    "explanation": "Computer Programmers carry SOC base code 15-1251; the neighboring 15-1252 is Software Developers.",
+    "source": "SocOccupation: Computer Programmers (baseCode 15-1251)"
+  },
+  {
+    "id": "soc-dm-005",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Job Zones",
+    "question": "Which SOC Job Zone is assigned to 'Lawyers'?",
+    "options": ["Job Zone 2", "Job Zone 3", "Job Zone 4", "Job Zone 5"],
+    "answerIndex": 3,
+    "explanation": "Lawyers are in Job Zone 5 (Extensive Preparation Needed), reflecting that the occupation generally requires a graduate-level (e.g., law) degree.",
+    "source": "SocOccupation: Lawyers (jobZone 5)"
+  },
+  {
+    "id": "soc-dm-006",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Job Zones",
+    "question": "Which SOC Job Zone is assigned to 'Cashiers'?",
+    "options": ["Job Zone 2", "Job Zone 3", "Job Zone 4", "Job Zone 5"],
+    "answerIndex": 0,
+    "explanation": "Cashiers are in Job Zone 2 (Some Preparation Needed), generally requiring a high school diploma and little prior experience.",
+    "source": "SocOccupation: Cashiers (jobZone 2)"
+  },
+  {
+    "id": "soc-dm-007",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Job Zones",
+    "question": "Which SOC Job Zone applies to 'Electricians'?",
+    "options": ["Job Zone 2", "Job Zone 3", "Job Zone 4", "Job Zone 5"],
+    "answerIndex": 1,
+    "explanation": "Electricians are in Job Zone 3 (Medium Preparation Needed), typically requiring vocational training or an apprenticeship and often a licensing exam.",
+    "source": "SocOccupation: Electricians (jobZone 3)"
+  },
+  {
+    "id": "soc-dm-008",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Job Zones",
+    "question": "According to the SOC Job Zone framework, which Job Zone is described as requiring graduate school (e.g., master's, Ph.D., M.D., or J.D.)?",
+    "options": [
+      "Job Zone Three: Medium Preparation Needed",
+      "Job Zone Four: Considerable Preparation Needed",
+      "Job Zone Five: Extensive Preparation Needed",
+      "Job Zone 1-2: Very Little to Some Preparation Needed"
+    ],
+    "answerIndex": 2,
+    "explanation": "Job Zone Five (Extensive Preparation Needed) states that most occupations require graduate school, such as a master's, Ph.D., M.D., or J.D.",
+    "source": "SocJobZone: Job Zone Five (education = graduate school)"
+  },
+  {
+    "id": "soc-dm-009",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Job Zones",
+    "question": "Which SOC Job Zone is defined as typically requiring a four-year bachelor's degree?",
+    "options": [
+      "Job Zone Three: Medium Preparation Needed",
+      "Job Zone Four: Considerable Preparation Needed",
+      "Job Zone Five: Extensive Preparation Needed",
+      "Job Zone 1-2: Very Little to Some Preparation Needed"
+    ],
+    "answerIndex": 1,
+    "explanation": "Job Zone Four (Considerable Preparation Needed) states most of these occupations require a four-year bachelor's degree.",
+    "source": "SocJobZone: Job Zone Four (education = bachelor's degree)"
+  },
+  {
+    "id": "soc-dm-010",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Job Zones",
+    "question": "Which SOC Job Zone describes education as 'training in vocational schools, related on-the-job experience, or an associate's degree'?",
+    "options": [
+      "Job Zone 1-2: Very Little to Some Preparation Needed",
+      "Job Zone Three: Medium Preparation Needed",
+      "Job Zone Four: Considerable Preparation Needed",
+      "Job Zone Five: Extensive Preparation Needed"
+    ],
+    "answerIndex": 1,
+    "explanation": "Job Zone Three (Medium Preparation Needed) specifies vocational-school training, related on-the-job experience, or an associate's degree.",
+    "source": "SocJobZone: Job Zone Three (education = vocational/associate's)"
+  },
+  {
+    "id": "soc-dm-011",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Alternate Titles",
+    "question": "Within SOC, the title 'CEO (Chief Executive Officer)' is recorded as an alternate title for which occupation?",
+    "options": ["General and Operations Managers", "Chief Executives", "Financial Managers", "Legislators"],
+    "answerIndex": 1,
+    "explanation": "SOC stores many alternate (lay) titles per occupation; 'CEO (Chief Executive Officer)' is listed among the alternate titles for Chief Executives (11-1011).",
+    "source": "SocOccupation: Chief Executives (alternateTitles includes 'CEO (Chief Executive Officer)')"
+  },
+  {
+    "id": "soc-dm-012",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "medium",
+    "concept": "Alternate Titles",
+    "question": "The alternate title 'Certified Public Accountant (CPA)' maps to which SOC occupation?",
+    "options": ["Accountants and Auditors", "Lawyers", "Chief Executives", "Computer Programmers"],
+    "answerIndex": 0,
+    "explanation": "SOC records 'Certified Public Accountant (CPA)' as an alternate title for Accountants and Auditors (13-2011).",
+    "source": "SocOccupation: Accountants and Auditors (alternateTitles includes 'Certified Public Accountant (CPA)')"
+  },
+  {
+    "id": "soc-dm-013",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "Occupation Definitions",
+    "question": "Which SOC occupation is defined as 'Diagnose, treat, and provide preventive care to individuals and families across the lifespan'?",
+    "options": ["Registered Nurses", "Family Medicine Physicians", "Lawyers", "Chief Executives"],
+    "answerIndex": 1,
+    "explanation": "That definition belongs to Family Medicine Physicians (29-1215), a Job Zone 5 occupation. Registered Nurses (29-1141) instead assess needs and implement nursing care plans.",
+    "source": "SocOccupation: Family Medicine Physicians (description + baseCode 29-1215)"
+  },
+  {
+    "id": "soc-dm-014",
+    "spec": "SOC",
+    "layer": "data-model",
+    "difficulty": "hard",
+    "concept": "CIP Mappings",
+    "question": "In SOC, the cipMappings property on an occupation such as 'Registered Nurses' represents what?",
+    "options": [
+      "A list of related instructional program (CIP) codes",
+      "The set of states where the job is licensed",
+      "The salary percentiles for the occupation",
+      "The transport endpoints for SOC data"
+    ],
+    "answerIndex": 0,
+    "explanation": "cipMappings is a list of CIP (Classification of Instructional Programs) codes linking an occupation to related fields of study; e.g., Registered Nurses map to 51.38xx nursing programs.",
+    "source": "SocOccupation: Registered Nurses (cipMappings = 51.3801, 51.3802, ...)"
+  },
+  {
+    "id": "soc-bd-001",
+    "spec": "SOC",
+    "layer": "transport",
+    "difficulty": "medium",
+    "concept": "Distribution Format",
+    "question": "How is the SOC (Standard Occupational Classification) typically distributed?",
+    "options": [
+      "As a streaming JSON API",
+      "As flat tables (CSV)",
+      "As a GraphQL endpoint",
+      "As an XML SOAP service"
+    ],
+    "answerIndex": 1,
+    "explanation": "SOC is a federal classification distributed as flat tables (CSV). It defines no transport protocol of its own.",
+    "source": "SOC boundary: distributed as flat tables (CSV)"
+  },
+  {
+    "id": "soc-bd-002",
+    "spec": "SOC",
+    "layer": "api",
+    "difficulty": "medium",
+    "concept": "API Boundary",
+    "question": "Which statement about the SOC standard is correct?",
+    "options": [
+      "SOC defines a REST API for querying occupations",
+      "SOC defines no API and no transport protocol; it is a classification only",
+      "SOC mandates JSON serialization over HTTPS",
+      "SOC ships with an official GraphQL schema"
+    ],
+    "answerIndex": 1,
+    "explanation": "SOC is a data-model/classification only. It defines NO transport protocol and NO API; consumers load the published flat tables (CSV).",
+    "source": "SOC boundary: classification only, no API and no transport protocol"
+  }
+]

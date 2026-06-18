@@ -1,0 +1,614 @@
+[
+  {
+    "id": "ctdl-dm-001",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Classes",
+    "question": "In CTDL, what does the ceterms:Credential class represent?",
+    "options": [
+      "A broadly defined class encompassing credentials used across domains and communities of practice",
+      "A statistical summary of credential holder earnings",
+      "A physical place where a credential can be pursued",
+      "A machine-deployable rule for executing pathway constraints"
+    ],
+    "answerIndex": 0,
+    "explanation": "ceterms:Credential is broadly defined to encompass credentials across domains; subclasses such as ceterms:Certification or ceterms:BachelorDegree are used for specific credential types.",
+    "source": "CtdlClass: Credential (ceterms:Credential)"
+  },
+  {
+    "id": "ctdl-dm-002",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "Which CTDL property identifies the quality assurance organization that provides official authorization to or approval of a credential, organization, assessment, or learning opportunity?",
+    "options": [
+      "ceterms:approvedBy",
+      "ceterms:assertedBy",
+      "ceterms:accreditedBy",
+      "ceterms:affiliatedAgent"
+    ],
+    "answerIndex": 2,
+    "explanation": "ceterms:accreditedBy points to the quality assurance organization that accredits a resource; accreditation includes ongoing monitoring of continued conformance to standards.",
+    "source": "CtdlProperty: Accredited By (ceterms:accreditedBy)"
+  },
+  {
+    "id": "ctdl-dm-003",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Properties",
+    "question": "What is the range (rangeType) of the CTDL property ceterms:address?",
+    "options": [
+      "rdf:langString",
+      "ceterms:Place",
+      "ceterms:JurisdictionProfile",
+      "xsd:anyURI"
+    ],
+    "answerIndex": 1,
+    "explanation": "ceterms:address has a range of ceterms:Place; it captures particulars describing the location of the place.",
+    "source": "CtdlProperty: Address (ceterms:address), rangeTypes ceterms:Place"
+  },
+  {
+    "id": "ctdl-dm-004",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "The CTDL property ceterms:ctid is described as the equivalent of what for a resource?",
+    "options": [
+      "A version identifier for the resource",
+      "A jurisdiction in which the resource is accredited",
+      "A delivery method for the resource",
+      "An aggregate statistical profile"
+    ],
+    "answerIndex": 0,
+    "explanation": "The CTID is the equivalent of a version identifier; different versions of a resource are distinct expressions, each assigned its own CTID.",
+    "source": "CtdlProperty: CTID (ceterms:ctid)"
+  },
+  {
+    "id": "ctdl-dm-005",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Classes",
+    "question": "What is the purpose of a ceterms:AlignmentMap in CTDL?",
+    "options": [
+      "To describe direct costs incurred when pursuing a credential",
+      "To provide the means for parties to assert sets of alignments between already existing entities",
+      "To group together related resources as a collection",
+      "To describe aggregate earnings data for a credential"
+    ],
+    "answerIndex": 1,
+    "explanation": "Alignment maps let parties assert sets of alignments between entities created by themselves or other parties.",
+    "source": "CtdlClass: Alignment Map (ceterms:AlignmentMap)"
+  },
+  {
+    "id": "ctdl-dm-006",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "Which CTDL property is used to indicate the primary field of study of a degree-seeking student?",
+    "options": [
+      "ceterms:degreeConcentration",
+      "ceterms:degreeMinor",
+      "ceterms:degreeMajor",
+      "ceterms:classification"
+    ],
+    "answerIndex": 2,
+    "explanation": "ceterms:degreeMajor captures the primary field of study; best practice is to draw values from frameworks such as the NCES Classification of Instructional Programs (CIP).",
+    "source": "CtdlProperty: Degree Major (ceterms:degreeMajor)"
+  },
+  {
+    "id": "ctdl-dm-007",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Properties",
+    "question": "According to CTDL, in what format must ceterms:currency express a monetary amount's currency?",
+    "options": [
+      "A two-letter ISO 3166-1 alpha-2 country code",
+      "An ISO 8601 duration value",
+      "A 3-letter ISO 4217 code such as \"USD\"",
+      "A free-text rdf:langString"
+    ],
+    "answerIndex": 2,
+    "explanation": "ceterms:currency expresses the currency in 3-letter ISO 4217 format, e.g. \"USD\".",
+    "source": "CtdlProperty: Currency (ceterms:currency)"
+  },
+  {
+    "id": "ctdl-dm-008",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Classes",
+    "question": "In CTDL, the ceterms:Course class is explicitly distinguished from which other class?",
+    "options": [
+      "ceterms:Assessment, which evaluates ability",
+      "ceterms:Program, which aggregates several courses",
+      "ceterms:Collection, which groups resources",
+      "ceterms:Pathway, which sequences components"
+    ],
+    "answerIndex": 1,
+    "explanation": "Course is distinct from Program, which aggregates several courses.",
+    "source": "CtdlClass: Course (ceterms:Course)"
+  },
+  {
+    "id": "ctdl-dm-009",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Vocabularies",
+    "question": "Which CTDL concept scheme defines available statuses including ActiveActionStatus, CompletedActionStatus, FailedActionStatus, and PotentialActionStatus?",
+    "options": [
+      "ceterms:CredentialStatus",
+      "ceterms:LifeCycleStatus",
+      "ceterms:ActionStatus",
+      "ceterms:Audience"
+    ],
+    "answerIndex": 2,
+    "explanation": "The ceterms:ActionStatus concept scheme enumerates ActiveActionStatus, CompletedActionStatus, FailedActionStatus, and PotentialActionStatus.",
+    "source": "CtdlConceptScheme: Action Status (ceterms:ActionStatus)"
+  },
+  {
+    "id": "ctdl-dm-010",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Vocabularies",
+    "question": "In the CTDL Agent Sector concept scheme, which of the following is a defined sector value?",
+    "options": [
+      "agentSector:PrivateNonProfit",
+      "agentSector:CharterAuthority",
+      "agentSector:TribalGovernment",
+      "agentSector:MunicipalDistrict"
+    ],
+    "answerIndex": 0,
+    "explanation": "The ceterms:AgentSector scheme includes public, private for-profit, and private non-profit sectors; agentSector:PrivateNonProfit covers independent and religiously affiliated not-for-profit schools.",
+    "source": "CtdlConcept: agentSector:PrivateNonProfit (scheme ceterms:AgentSector)"
+  },
+  {
+    "id": "ctdl-dm-011",
+    "spec": "CTDL",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Vocabularies",
+    "question": "Within the CTDL alignment vocabulary, which set of concepts is used to express the strength of a relationship between framework nodes?",
+    "options": [
+      "Announced, Unannounced, Review, Renewal",
+      "ExactMatch, CloseMatch, BroadMatch, NarrowMatch, NoMatch",
+      "Active, Completed, Failed, Potential",
+      "Public, Private, ForProfit, NonProfit"
+    ],
+    "answerIndex": 1,
+    "explanation": "The CTDL alignment concepts (alignment:ExactMatch, CloseMatch, BroadMatch, NarrowMatch, NoMatch) express how closely two framework nodes correspond.",
+    "source": "CtdlConcept: alignment:ExactMatch / CloseMatch / BroadMatch / NarrowMatch / NoMatch"
+  },
+  {
+    "id": "ctdl-tr-001",
+    "spec": "CTDL",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Serialization",
+    "question": "CTDL is built on which underlying data technology?",
+    "options": [
+      "A relational SQL schema with foreign keys",
+      "Linked data, serialized as JSON-LD / RDF",
+      "Fixed-width flat files",
+      "A proprietary binary protocol"
+    ],
+    "answerIndex": 1,
+    "explanation": "CTDL is linked data and is serialized as JSON-LD / RDF, allowing terms to be referenced by URI.",
+    "source": "CTDL transport: linked data, JSON-LD / RDF"
+  },
+  {
+    "id": "ctdl-tr-002",
+    "spec": "CTDL",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Publishing",
+    "question": "Where are CTDL descriptions of credentials and organizations published?",
+    "options": [
+      "The Credential Registry (Credential Engine Registry)",
+      "A W3C-hosted verifiable credentials wallet",
+      "The IPEDS data center",
+      "A local on-premise LMS database"
+    ],
+    "answerIndex": 0,
+    "explanation": "CTDL terms and resources are published in the Credential Registry; best practice notes repeatedly reference the Credential Engine Registry.",
+    "source": "CTDL transport: published in the Credential Registry"
+  },
+  {
+    "id": "ctdl-tr-003",
+    "spec": "CTDL",
+    "layer": "transport",
+    "difficulty": "stretch",
+    "concept": "Namespaces",
+    "question": "Many CTDL terms such as accreditedBy and ctid use which namespace prefix?",
+    "options": [
+      "ob:",
+      "ceterms:",
+      "clr:",
+      "xsd:"
+    ],
+    "answerIndex": 1,
+    "explanation": "Most CTDL terms use the ceterms: prefix (e.g. ceterms:accreditedBy, ceterms:ctid); competency-related terms use ceasn: and asn:.",
+    "source": "CTDL transport: prefixes such as ceterms: and asn:"
+  },
+  {
+    "id": "ctdl-tr-004",
+    "spec": "CTDL",
+    "layer": "transport",
+    "difficulty": "stretch",
+    "concept": "Namespaces",
+    "question": "CTDL competency framework properties such as skillEmbodied and knowledgeEmbodied carry which namespace prefix?",
+    "options": [
+      "ceasn:",
+      "ceterms:",
+      "skos:",
+      "rdf:"
+    ],
+    "answerIndex": 0,
+    "explanation": "Competency-related CTDL/CTDL-ASN properties use the ceasn: prefix, e.g. ceasn:skillEmbodied and ceasn:knowledgeEmbodied.",
+    "source": "CtdlProperty: Skill Embodied (ceasn:skillEmbodied), Knowledge Embodied (ceasn:knowledgeEmbodied)"
+  },
+  {
+    "id": "ctdl-tr-005",
+    "spec": "CTDL",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Identifiers",
+    "question": "Which range type indicates that a CTDL property value is a dereferenceable web URI rather than free text?",
+    "options": [
+      "rdf:langString",
+      "xsd:string",
+      "xsd:anyURI",
+      "xsd:date"
+    ],
+    "answerIndex": 2,
+    "explanation": "Properties such as ceterms:availableOnlineAt use xsd:anyURI, signaling an online location/URI, whereas rdf:langString and xsd:string hold literal text.",
+    "source": "CtdlProperty: Available Online At (ceterms:availableOnlineAt), rangeTypes xsd:anyURI"
+  },
+  {
+    "id": "ctdl-api-001",
+    "spec": "CTDL",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Boundary",
+    "question": "How is CTDL data primarily made interoperable and consumable, given it is a linked-data vocabulary?",
+    "options": [
+      "Through JSON-LD / RDF descriptions published to the Credential Registry and referenced by URI",
+      "Through a mandatory SOAP web service exposed by every issuer",
+      "Through nightly CSV exports emailed to subscribers",
+      "Through a single REST CRUD API defined by the CTDL specification"
+    ],
+    "answerIndex": 0,
+    "explanation": "CTDL is a linked-data model published as JSON-LD/RDF in the Credential Registry; it is not defined as a single REST CRUD API, so interoperability comes from URI-referenced linked data.",
+    "source": "CTDL transport/boundary: linked data in the Credential Registry, no single REST CRUD API"
+  },
+  {
+    "id": "clr-dm-001",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Classes",
+    "question": "In the CLR data model, what does the ClrSubject class represent?",
+    "options": [
+      "A collection of information about the learner that is the subject of the CLR credential",
+      "A cryptographic proof attached to the credential",
+      "A rubric criterion level used to score results",
+      "The terms of use governing the credential"
+    ],
+    "answerIndex": 0,
+    "explanation": "ClrSubject is a collection of information about the learner who is the subject of the CLR credential, including their achievements and embedded verifiable credentials.",
+    "source": "ClrClass: ClrSubject"
+  },
+  {
+    "id": "clr-dm-002",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "On the CLR Achievement class, which property is required?",
+    "options": [
+      "version",
+      "fieldOfStudy",
+      "name",
+      "creditsAvailable"
+    ],
+    "answerIndex": 2,
+    "explanation": "Achievement.name (the name of the achievement) is required, along with id, type, description, and criteria; version and fieldOfStudy are optional.",
+    "source": "ClrProperty: Achievement.name (required true)"
+  },
+  {
+    "id": "clr-dm-003",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Data types",
+    "question": "What is the dataType of the CLR property Achievement.creditsAvailable?",
+    "options": [
+      "string",
+      "number",
+      "boolean",
+      "array"
+    ],
+    "answerIndex": 1,
+    "explanation": "creditsAvailable is a number representing credit hours associated with or possible for the achievement (e.g. 3.0).",
+    "source": "ClrProperty: Achievement.creditsAvailable (dataType number)"
+  },
+  {
+    "id": "clr-dm-004",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Classes",
+    "question": "What does the CLR Association class describe?",
+    "options": [
+      "The geographic coordinates of a location",
+      "The semantic relationship between two achievements and the credentials that assert them",
+      "Metadata about an image representing a profile",
+      "A schema file used to validate the credential"
+    ],
+    "answerIndex": 1,
+    "explanation": "An Association describes the semantic relationship between a source and target achievement (and their asserting credentials), via properties like associationType, sourceId, and targetId.",
+    "source": "ClrClass: Association"
+  },
+  {
+    "id": "clr-dm-005",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "In the CLR IdentityObject, what does the boolean property 'hashed' indicate?",
+    "options": [
+      "Whether the credential has been revoked",
+      "Whether the identityHash value is hashed",
+      "Whether the achievement is partial",
+      "Whether the proof has been verified"
+    ],
+    "answerIndex": 1,
+    "explanation": "IdentityObject.hashed is a required boolean indicating whether the identityHash value is hashed (rather than plaintext).",
+    "source": "ClrProperty: IdentityObject.hashed (dataType boolean, required true)"
+  },
+  {
+    "id": "clr-dm-006",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Option sets",
+    "question": "Which value is a member of the CLR ResultDescription.resultType enumeration?",
+    "options": [
+      "GradePointAverage",
+      "isChildOf",
+      "ExactMatch",
+      "PrivateNonProfit"
+    ],
+    "answerIndex": 0,
+    "explanation": "ResultDescription.resultType is an extensible vocabulary that includes values such as GradePointAverage, LetterGrade, ScaledScore, and RubricScore.",
+    "source": "ClrOptionSet: ResultDescription.resultType"
+  },
+  {
+    "id": "clr-dm-007",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "In the CLR RubricCriterionLevel class, why is the 'id' property required?",
+    "options": [
+      "So the credential can be revoked",
+      "So a result can link to this rubric criterion level",
+      "So the proof can be verified",
+      "So the issuer can be identified"
+    ],
+    "answerIndex": 1,
+    "explanation": "RubricCriterionLevel.id is the unique URI for the level and is required so that a result can link to it.",
+    "source": "ClrProperty: RubricCriterionLevel.id (required true)"
+  },
+  {
+    "id": "clr-dm-008",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Option sets",
+    "question": "Which of the following is a valid value in the CLR Association.associationType enumeration?",
+    "options": [
+      "PerformanceLevel",
+      "exactMatchOf",
+      "emailAddress",
+      "LetterGrade"
+    ],
+    "answerIndex": 1,
+    "explanation": "Association.associationType values include isChildOf, isParentOf, isPeerOf, precedes, isPartOf, isRelatedTo, replacedBy, and exactMatchOf.",
+    "source": "ClrOptionSet: Association.associationType"
+  },
+  {
+    "id": "clr-dm-009",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Properties",
+    "question": "On the CLR Alignment class, which property is required to point to the official description of the alignment target?",
+    "options": [
+      "targetCode",
+      "targetDescription",
+      "targetFramework",
+      "targetUrl"
+    ],
+    "answerIndex": 3,
+    "explanation": "Alignment.targetUrl is a required URL linking to the official description of the alignment target; targetName is also required, while targetCode, targetDescription, and targetFramework are optional.",
+    "source": "ClrProperty: Alignment.targetUrl (required true)"
+  },
+  {
+    "id": "clr-dm-010",
+    "spec": "CLR",
+    "layer": "data-model",
+    "difficulty": "stretch",
+    "concept": "Classes",
+    "question": "What does the CLR ResultDescription class describe?",
+    "options": [
+      "A possible achievement result",
+      "The issuer's contact address",
+      "A cryptographic signature suite",
+      "The learner's date of birth"
+    ],
+    "answerIndex": 0,
+    "explanation": "ResultDescription describes a possible achievement result and can reference rubric criterion levels and allowed value ranges.",
+    "source": "ClrClass: ResultDescription"
+  },
+  {
+    "id": "clr-tr-001",
+    "spec": "CLR",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Verifiable Credentials",
+    "question": "A ClrCredential is defined as a CLR with all the properties needed to conform to what?",
+    "options": [
+      "A W3C Verifiable Credential as defined in the VC Data Model 2.0",
+      "An IPEDS survey submission",
+      "A relational database row",
+      "A SOAP envelope"
+    ],
+    "answerIndex": 0,
+    "explanation": "A ClrCredential is a CLR carrying all properties needed to conform with a Verifiable Credential per the W3C VC-DATA-MODEL-2.0.",
+    "source": "ClrClass: ClrCredential"
+  },
+  {
+    "id": "clr-tr-002",
+    "spec": "CLR",
+    "layer": "transport",
+    "difficulty": "stretch",
+    "concept": "JSON-LD context",
+    "question": "For a ClrCredential, what must be the first item in the @context ordered set?",
+    "options": [
+      "https://purl.imsglobal.org/spec/clr/v2p0/context-2.0.1.json",
+      "https://www.w3.org/ns/credentials/v2",
+      "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+      "https://schema.org"
+    ],
+    "answerIndex": 1,
+    "explanation": "The ClrCredential @context must be an ordered set whose first three items begin with https://www.w3.org/ns/credentials/v2, followed by the CLR and Open Badges contexts.",
+    "source": "ClrProperty: ClrCredential.@context (required true)"
+  },
+  {
+    "id": "clr-tr-003",
+    "spec": "CLR",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Proofs",
+    "question": "In the CLR Proof class, the proofPurpose property MUST have which value?",
+    "options": [
+      "authentication",
+      "keyAgreement",
+      "assertionMethod",
+      "capabilityInvocation"
+    ],
+    "answerIndex": 2,
+    "explanation": "Proof.proofPurpose must be 'assertionMethod', used together with the verificationMethod (the URL of the public key that can verify the signature).",
+    "source": "ClrProperty: Proof.proofPurpose"
+  },
+  {
+    "id": "clr-tr-004",
+    "spec": "CLR",
+    "layer": "transport",
+    "difficulty": "stretch",
+    "concept": "Proofs",
+    "question": "Which CLR Proof property holds a value chosen by the verifier to mitigate authentication proof replay attacks?",
+    "options": [
+      "nonce",
+      "challenge",
+      "cryptosuite",
+      "proofValue"
+    ],
+    "answerIndex": 1,
+    "explanation": "Proof.challenge is a value chosen by the verifier to mitigate replay attacks; nonce is chosen by the proof creator to randomize values for privacy.",
+    "source": "ClrProperty: Proof.challenge"
+  },
+  {
+    "id": "clr-api-001",
+    "spec": "CLR",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "API style",
+    "question": "What kind of API does CLR define for exchanging learner records?",
+    "options": [
+      "A REST API",
+      "A GraphQL-only API",
+      "A FTP batch transfer protocol",
+      "A peer-to-peer gossip protocol"
+    ],
+    "answerIndex": 0,
+    "explanation": "CLR defines a REST API for exchanging learner records between systems.",
+    "source": "CLR api: REST API for exchanging learner records"
+  },
+  {
+    "id": "clr-api-002",
+    "spec": "CLR",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Status",
+    "question": "Which CLR class carries information used to discover whether a verifiable credential is suspended or revoked?",
+    "options": [
+      "RefreshService",
+      "CredentialStatus",
+      "TermsOfUse",
+      "CredentialSchema"
+    ],
+    "answerIndex": 1,
+    "explanation": "CredentialStatus carries information used to discover the current status of a verifiable credential, such as whether it is suspended or revoked.",
+    "source": "ClrClass: CredentialStatus"
+  },
+  {
+    "id": "clr-api-003",
+    "spec": "CLR",
+    "layer": "api",
+    "difficulty": "stretch",
+    "concept": "Refresh",
+    "question": "What is the purpose of the CLR RefreshService class?",
+    "options": [
+      "To validate the data schema of the credential",
+      "To refresh the verifiable credential",
+      "To geocode the issuer's address",
+      "To embed an image caption"
+    ],
+    "answerIndex": 1,
+    "explanation": "The information in RefreshService is used to refresh the verifiable credential.",
+    "source": "ClrClass: RefreshService"
+  },
+  {
+    "id": "clr-api-004",
+    "spec": "CLR",
+    "layer": "api",
+    "difficulty": "stretch",
+    "concept": "Schema validation",
+    "question": "For CLR CredentialSchema, the 'type' property must identify validation of which kind?",
+    "options": [
+      "'1EdTechJsonSchemaValidator2019'",
+      "'XMLSchemaValidator2011'",
+      "'JsonLogicValidator'",
+      "'SHACLShapeValidator'"
+    ],
+    "answerIndex": 0,
+    "explanation": "One instance of CredentialSchema MUST have a type of '1EdTechJsonSchemaValidator2019', and its id MUST be the URL of the JSON Schema for the credential.",
+    "source": "ClrProperty: CredentialSchema.type (required true)"
+  },
+  {
+    "id": "clr-api-005",
+    "spec": "CLR",
+    "layer": "api",
+    "difficulty": "stretch",
+    "concept": "Partial delivery",
+    "question": "In a ClrCredential, what does the boolean 'partial' property signal when set to true?",
+    "options": [
+      "The credential's proof is incomplete",
+      "The CLR does not contain all assertions known by the publisher for the learner at issue time",
+      "The learner only partially completed the achievement",
+      "The credential is valid for only part of a year"
+    ],
+    "answerIndex": 1,
+    "explanation": "partial=true means the CLR does not include all assertions the publisher knows for the learner at issue time, which is useful when streaming achievements in real time.",
+    "source": "ClrProperty: ClrCredential.partial (dataType boolean)"
+  }
+]

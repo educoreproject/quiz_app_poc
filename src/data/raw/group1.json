@@ -1,0 +1,475 @@
+[
+  {
+    "id": "ceds-dm-001",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "CedsClass",
+    "question": "In CEDS, which class is described as 'Defines a qualification, achievement, personal or organizational quality, or aspect of an identity typically used to indicate suitability'?",
+    "options": ["Credential Issuer", "Credential Definition", "Credential Offered", "Credential Award Evidence"],
+    "answerIndex": 1,
+    "explanation": "The Credential Definition class defines the qualification or achievement itself, whereas Credential Issuer, Credential Offered, and Credential Award Evidence describe issuing organizations, offerings, and supporting evidence respectively.",
+    "source": "CedsClass: Credential Definition"
+  },
+  {
+    "id": "ceds-dm-002",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "CedsProperty",
+    "question": "What does the CEDS property 'Credential Evidence Statement' capture?",
+    "options": [
+      "An alias or acronym for a credential such as PhD or MA",
+      "The effective date of the content of a credential definition",
+      "A statement or reference describing the evidence that the learner met the criteria for attainment",
+      "The URL from which a credential was issued"
+    ],
+    "answerIndex": 2,
+    "explanation": "Credential Evidence Statement records the evidence that the learner met the attainment criteria. The other choices describe Credential Definition Alternate Name, Credential Definition Date Effective, and Credential Award Issuer Origin URL.",
+    "source": "CedsProperty: Credential Evidence Statement"
+  },
+  {
+    "id": "ceds-dm-003",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Option Sets",
+    "question": "Which value is a valid member of the CEDS 'Transportation Status Type' option set?",
+    "options": ["Eligible because of disability", "Public expense", "Qualifies for regular state aid", "Reached maximum age for services"],
+    "answerIndex": 1,
+    "explanation": "'Public expense' belongs to Transportation Status Type. The distractors are real CEDS values, but from Transportation Public Expense Eligibility Type, Transportation State Aid Qualification Type, and Adjusted Exit or Withdrawal Type.",
+    "source": "CedsOptionSet: Transportation Status Type"
+  },
+  {
+    "id": "ceds-dm-004",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Option Sets",
+    "question": "Which option is a valid value in the CEDS 'Disability Condition Type' option set?",
+    "options": ["By health care provider", "Candidacy exam", "Speech or Language impairment", "Two-year based on funding"],
+    "answerIndex": 2,
+    "explanation": "'Speech or Language impairment' is a Disability Condition Type value. The distractors come from Disability Determination Source Type, Doctoral Exams Required Type, and Most Prevalent Level of Institution.",
+    "source": "CedsOptionSet: Disability Condition Type"
+  },
+  {
+    "id": "ceds-dm-005",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Data Types",
+    "question": "What data type does the CEDS property 'Membership Entry Date' use?",
+    "options": ["dateTime", "date", "gYear", "string"],
+    "answerIndex": 1,
+    "explanation": "Membership Entry Date uses the 'date' data type. CEDS distinguishes plain 'date' from 'dateTime' (used by Record Start Date Time) and 'gYear' (used by Data Collection School Year).",
+    "source": "CedsProperty: Membership Entry Date"
+  },
+  {
+    "id": "ceds-dm-006",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Data Types",
+    "question": "Which CEDS property has the data type 'gYear'?",
+    "options": ["Record Status Date", "Data Collection School Year", "Person Identifier", "Membership Exit Date"],
+    "answerIndex": 1,
+    "explanation": "Data Collection School Year uses gYear to represent a reported school session year. Record Status Date is dateTime, Person Identifier is token, and Membership Exit Date is date.",
+    "source": "CedsProperty: Data Collection School Year"
+  },
+  {
+    "id": "ceds-dm-007",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Data Types",
+    "question": "What data type is assigned to the CEDS property 'Person Identifier'?",
+    "options": ["token", "string", "decimal", "int"],
+    "answerIndex": 0,
+    "explanation": "Person Identifier (and Organization Identifier) use the 'token' data type for unique codes. Plain text descriptions use 'string', durations use 'decimal', and ages use 'int'.",
+    "source": "CedsProperty: Person Identifier"
+  },
+  {
+    "id": "ceds-dm-008",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "HAS_PROPERTY",
+    "question": "The CEDS property 'Credential Definition Minimum Age' (an integer minimum eligibility age) belongs to which class?",
+    "options": ["Credential Definition Category", "Credential Definition Criteria Definition", "Credential Issuer", "Credential Offered"],
+    "answerIndex": 1,
+    "explanation": "Credential Definition Minimum Age is a property of Credential Definition Criteria Definition, which defines the criteria by which a credential may be issued. The other classes handle categories, issuing organizations, and offering periods.",
+    "source": "CedsClass: Credential Definition Criteria Definition"
+  },
+  {
+    "id": "ceds-dm-009",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "CedsProperty",
+    "question": "What does the CEDS property 'Credential Definition Alternate Name' represent?",
+    "options": [
+      "A globally unique identifier recognized by the credential's creator",
+      "An alias for the credential, including acronyms such as PhD, MA, and BA",
+      "A category for defining the credential within a category system",
+      "The criteria for competency-based completion of a credential"
+    ],
+    "answerIndex": 1,
+    "explanation": "Credential Definition Alternate Name holds aliases and abbreviations like PhD or BA. The distractors describe Credential Definition Identifier, Credential Definition Category Type, and Credential Definition Criteria.",
+    "source": "CedsProperty: Credential Definition Alternate Name"
+  },
+  {
+    "id": "ceds-dm-010",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Option Sets",
+    "question": "Which value is part of the CEDS 'Projected High School Diploma Type' option set?",
+    "options": ["State Defined Alternate Diploma", "Discontinued schooling", "Eligible because of distance", "Qualifying exam"],
+    "answerIndex": 0,
+    "explanation": "'State Defined Alternate Diploma' is a Projected High School Diploma Type value. The distractors are real CEDS values from Adjusted Exit or Withdrawal Type, Transportation Public Expense Eligibility Type, and Doctoral Exams Required Type.",
+    "source": "CedsOptionSet: Projected High School Diploma Type"
+  },
+  {
+    "id": "ceds-dm-011",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Option Sets",
+    "question": "The CEDS 'Chronic Student Absenteeism Indicator' option set describes a student absent 10% or more school days. Which pair of values does it allow?",
+    "options": ["Participated / DidNotParticipate", "Yes / No", "Eligible / Not eligible", "True / False"],
+    "answerIndex": 1,
+    "explanation": "Chronic Student Absenteeism Indicator is a Yes/No indicator option set. CEDS indicator option sets generally enumerate explicit Yes and No values rather than booleans.",
+    "source": "CedsOptionSet: Chronic Student Absenteeism Indicator"
+  },
+  {
+    "id": "ceds-dm-012",
+    "spec": "CEDS",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Option Sets",
+    "question": "Which value belongs to the CEDS 'Most Prevalent Level of Institution' option set?",
+    "options": ["Two-year based on degrees conferred", "By school psychologist or other psychologist", "Qualifies for special education aid", "Oral comprehensive exam"],
+    "answerIndex": 0,
+    "explanation": "'Two-year based on degrees conferred' classifies a postsecondary institution's most prevalent level. The distractors are from Disability Determination Source Type, Transportation State Aid Qualification Type, and Doctoral Exams Required Type.",
+    "source": "CedsOptionSet: Most Prevalent Level of Institution"
+  },
+  {
+    "id": "ceds-bnd-001",
+    "spec": "CEDS",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Boundary",
+    "question": "How does CEDS define the way its data should be transmitted between systems over the wire?",
+    "options": [
+      "CEDS mandates XML serialization over an HTTP messaging layer",
+      "CEDS does not define any wire protocol or serialization format; it is a national data dictionary expressed as RDF/JSON-LD",
+      "CEDS requires a publish/subscribe event model",
+      "CEDS specifies a REST request/response API"
+    ],
+    "answerIndex": 1,
+    "explanation": "CEDS is a data-model standard, a national data dictionary published as RDF/JSON-LD. It defines classes, properties, and option sets but no transport protocol, so transmission is left to implementing standards.",
+    "source": "CEDS spec scope: data model only"
+  },
+  {
+    "id": "ceds-bnd-002",
+    "spec": "CEDS",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Boundary",
+    "question": "Which statement about CEDS and APIs is correct?",
+    "options": [
+      "CEDS publishes a query/response API for retrieving option set values",
+      "CEDS defines an event subscription API for student records",
+      "CEDS defines no API; it is a vocabulary of classes, properties, and option sets that other standards reference",
+      "CEDS exposes a GraphQL endpoint for its data dictionary"
+    ],
+    "answerIndex": 2,
+    "explanation": "CEDS provides shared semantics (classes, properties, option sets) but no API of its own. APIs and query models are supplied by interoperability standards such as SIF or Ed-Fi that map to CEDS.",
+    "source": "CEDS spec scope: no API defined"
+  },
+  {
+    "id": "sif-dm-001",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "SifObject",
+    "question": "Which of the following is a SIF data object?",
+    "options": ["CredentialDefinition", "AccountingPeriod", "OptionSetValue", "JedxEntity"],
+    "answerIndex": 1,
+    "explanation": "AccountingPeriod is a SIF data object (it carries fields such as EndDate and FiscalYearRefId). The other choices are not SIF objects; CredentialDefinition is a CEDS class concept.",
+    "source": "SifObject: AccountingPeriod"
+  },
+  {
+    "id": "sif-dm-002",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SifField",
+    "question": "In SIF, what does the 'FiscalYearRefId' field on the AccountingPeriod object reference?",
+    "options": ["The end date of the accounting period", "The fiscal year to which the accounting period belongs", "A human-readable name of the accounting period", "The currency code for the period"],
+    "answerIndex": 1,
+    "explanation": "FiscalYearRefId is a reference field linking the accounting period to its fiscal year. EndDate, Name, and @Currency are separate fields on the object.",
+    "source": "SifField: AccountingPeriod.FiscalYearRefId"
+  },
+  {
+    "id": "sif-dm-003",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SifField",
+    "question": "What does the SIF 'OtherCode' field describe?",
+    "options": [
+      "A unique indicator (usually a URL) that points to the codeset used",
+      "A state/province code, local code, other code, or text string that crosswalks to an associated Code element",
+      "The effective date for a change in operational status",
+      "A reference to an Address object or instance"
+    ],
+    "answerIndex": 1,
+    "explanation": "OtherCode provides a crosswalk or translation of an associated Code element. The distractors describe the @Codeset attribute, OperationalStatusDate, and AddressRefId respectively.",
+    "source": "SifField: OtherCode"
+  },
+  {
+    "id": "sif-dm-004",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "SifField",
+    "question": "In SIF, the attribute '@Codeset' is described as what?",
+    "options": [
+      "The human-readable value of an element",
+      "A unique indicator (usually a URL) that points to the codeset used",
+      "The region or organization that an LEA belongs to",
+      "The identifier of the system or person that modified the data"
+    ],
+    "answerIndex": 1,
+    "explanation": "@Codeset is an attribute holding a unique indicator, usually a URL, pointing to the codeset in use. The distractors describe the Value, Indicator, and By fields.",
+    "source": "SifField: @Codeset"
+  },
+  {
+    "id": "sif-dm-005",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SifCodeset",
+    "question": "Which value is a member of the SIF address-type codeset that includes Mailing, Physical, and Shipping?",
+    "options": ["StateProvince", "GuardianAddress", "OnCampusHousing", "PrimaryResidence"],
+    "answerIndex": 1,
+    "explanation": "GuardianAddress is in the SIF address-type codeset (Billing, FatherAddress, GuardianAddress, Mailing, MotherAddress, OffCampus, OnCampus, PermanentAdmission, PermanentStudent, Physical, Shipping). 'StateProvince' belongs to a different codeset, and the other two are not valid members.",
+    "source": "SifCodeset: Address type (Billing, FatherAddress, GuardianAddress, ...)"
+  },
+  {
+    "id": "sif-dm-006",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "SifCodeset",
+    "question": "Which set of values matches the SIF race/ethnicity codeset?",
+    "options": [
+      "District, Federal, School, State, TestContractor",
+      "AmericanIndianOrAlaskaNative, Asian, BlackOrAfricanAmerican, NativeHawaiianOrOtherPacificIslander, White",
+      "Local, Other, StateProvince, Text",
+      "LEAInfo, RoomInfo, SchoolInfo"
+    ],
+    "answerIndex": 1,
+    "explanation": "The SIF race/ethnicity codeset enumerates AmericanIndianOrAlaskaNative, Asian, BlackOrAfricanAmerican, DemographicRaceTwoOrMoreRaces, NativeHawaiianOrOtherPacificIslander, RaceAndEthnicityUnknown, and White. The distractors are other real SIF codesets (responsibility/source, code-type, and object-type).",
+    "source": "SifCodeset: Race/Ethnicity"
+  },
+  {
+    "id": "sif-dm-007",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SifComplexType",
+    "question": "Which SIF complex type is used in 136 objects to carry creation, modification, and rights metadata?",
+    "options": ["TimeElement", "SpanGap", "SIF_Metadata", "Creator"],
+    "answerIndex": 2,
+    "explanation": "SIF_Metadata is the shared complex type used across 136 objects to hold lifecycle metadata. TimeElement, SpanGap, and Creator are also shared complex types but represent time periods, span gaps, and creator details.",
+    "source": "SifComplexType: SIF_Metadata"
+  },
+  {
+    "id": "sif-dm-008",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "SifSimpleType",
+    "question": "Which SIF simple type is used to represent monetary values?",
+    "options": ["MonetaryAmountType", "RefIdType", "DurationType", "CountryType"],
+    "answerIndex": 0,
+    "explanation": "MonetaryAmountType is the SIF simple type for monetary values. RefIdType holds object reference identifiers, DurationType holds durations, and CountryType holds country codes.",
+    "source": "SifSimpleType: MonetaryAmountType"
+  },
+  {
+    "id": "sif-dm-009",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SifField",
+    "question": "What does the SIF 'OperationalStatus' field on LEAInfo describe?",
+    "options": ["The operational condition of an LEA", "The effective date for a change in operational status", "A reference to an Address object", "The region or organization that the LEA belongs to"],
+    "answerIndex": 0,
+    "explanation": "OperationalStatus captures the operational condition of an LEA. OperationalStatusDate gives the effective date of a change, AddressRefId references an Address, and Indicator names the parent region/organization.",
+    "source": "SifField: LEAInfo.OperationalStatus"
+  },
+  {
+    "id": "sif-dm-010",
+    "spec": "SIF",
+    "layer": "data-model",
+    "difficulty": "intro",
+    "concept": "SifField",
+    "question": "In SIF, what does a field named 'RefId' (type RefIdType) provide for a data object?",
+    "options": [
+      "A human-readable display name",
+      "A globally unique object reference identifier",
+      "The codeset URL for an element",
+      "A monetary amount"
+    ],
+    "answerIndex": 1,
+    "explanation": "RefId values use the SIF RefIdType simple type to give each object a globally unique reference identifier used for linking objects. Display names, codeset URLs, and monetary amounts use other fields and types.",
+    "source": "SifSimpleType: RefIdType"
+  },
+  {
+    "id": "sif-tr-001",
+    "spec": "SIF",
+    "layer": "transport",
+    "difficulty": "intro",
+    "concept": "Serialization",
+    "question": "How are SIF data objects serialized on the wire?",
+    "options": ["As RDF/JSON-LD triples", "As XML", "As fixed-width CSV", "As Protocol Buffers"],
+    "answerIndex": 1,
+    "explanation": "SIF data objects serialize as XML, which is why fields carry XML attributes (such as @Codeset) and elements. RDF/JSON-LD is used by CEDS, not SIF.",
+    "source": "SIF transport: XML serialization"
+  },
+  {
+    "id": "sif-tr-002",
+    "spec": "SIF",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Infrastructure",
+    "question": "In the SIF Infrastructure, what role coordinates messaging and routing between applications?",
+    "options": ["The Zone Integration Server", "The Credential Issuer", "The AccountingPeriod object", "The CEDS option set registry"],
+    "answerIndex": 0,
+    "explanation": "The Zone Integration Server is the messaging hub in SIF Infrastructure, routing data between Agents within a Zone. The other choices are a CEDS class concept, a SIF data object, and a CEDS construct.",
+    "source": "SIF Infrastructure: Zone Integration Server"
+  },
+  {
+    "id": "sif-tr-003",
+    "spec": "SIF",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Infrastructure",
+    "question": "In SIF Infrastructure, what is an 'Agent'?",
+    "options": [
+      "An XML complex type shared across objects",
+      "A software component that connects an application to a SIF Zone to send and receive data",
+      "A codeset value indicating responsibility",
+      "A simple type used for reference identifiers"
+    ],
+    "answerIndex": 1,
+    "explanation": "A SIF Agent is the software that links an application into a Zone, publishing and consuming SIF messages through the Zone Integration Server. The distractors describe data-model constructs, not infrastructure roles.",
+    "source": "SIF Infrastructure: Agent"
+  },
+  {
+    "id": "sif-tr-004",
+    "spec": "SIF",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "Infrastructure",
+    "question": "In SIF Infrastructure, what is a 'Zone'?",
+    "options": [
+      "A logical grouping of applications that exchange data through a common integration server",
+      "An option set of grade-level codes",
+      "A mandatory field on every SIF object",
+      "An XML namespace declaration"
+    ],
+    "answerIndex": 0,
+    "explanation": "A Zone is a logical grouping of applications (via their Agents) that share data through a Zone Integration Server. It is an infrastructure concept, not a data-model field, codeset, or namespace.",
+    "source": "SIF Infrastructure: Zone"
+  },
+  {
+    "id": "sif-tr-005",
+    "spec": "SIF",
+    "layer": "transport",
+    "difficulty": "advanced",
+    "concept": "Transport",
+    "question": "Which transport is used to carry SIF Infrastructure messages between Agents and the Zone Integration Server?",
+    "options": ["SMTP", "HTTP", "FTP", "AMQP"],
+    "answerIndex": 1,
+    "explanation": "SIF Infrastructure carries its XML messages over HTTP between Agents and the Zone Integration Server. The other listed protocols are not the SIF messaging transport.",
+    "source": "SIF Infrastructure: HTTP transport"
+  },
+  {
+    "id": "sif-api-001",
+    "spec": "SIF",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Query model",
+    "question": "Which two interaction models does SIF expose to applications?",
+    "options": [
+      "A request/response query model and an event publish/subscribe model",
+      "A batch ETL model and a GraphQL model",
+      "An RDF triple-store model and a SPARQL model",
+      "A file-drop model and an email-notification model"
+    ],
+    "answerIndex": 0,
+    "explanation": "SIF provides a request/response query model (ask for data and get a reply) and an event (publish/subscribe) model where changes are broadcast to subscribers. The other pairings are not part of SIF.",
+    "source": "SIF API: query and event models"
+  },
+  {
+    "id": "sif-api-002",
+    "spec": "SIF",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Event model",
+    "question": "In the SIF event (publish/subscribe) model, what triggers an event being reported to subscribers?",
+    "options": [
+      "A change to a SIF data object such as an Add, Change, or Delete",
+      "A scheduled nightly batch export",
+      "A user clicking a button in a reporting dashboard",
+      "The expiration of a codeset URL"
+    ],
+    "answerIndex": 0,
+    "explanation": "SIF event reporting publishes object changes (Add/Change/Delete) so that subscribing agents receive updates as they happen. This contrasts with the request/response query model used for on-demand retrieval.",
+    "source": "SIF API: event reporting"
+  },
+  {
+    "id": "sif-api-003",
+    "spec": "SIF",
+    "layer": "api",
+    "difficulty": "advanced",
+    "concept": "Query model",
+    "question": "When a SIF agent needs a specific object on demand rather than waiting for a broadcast, which interaction model does it use?",
+    "options": ["The publish/subscribe event model", "The request/response query model", "The Zone registration handshake", "The complex-type import mechanism"],
+    "answerIndex": 1,
+    "explanation": "On-demand retrieval uses the SIF request/response query model: the agent issues a query and receives a response. Publish/subscribe is for broadcasting changes, and the other options are not retrieval models.",
+    "source": "SIF API: request/response query model"
+  },
+  {
+    "id": "sif-api-004",
+    "spec": "SIF",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Event model",
+    "question": "When a SIF agent issues an Add event for a SIF data object, in what format is the object payload carried?",
+    "options": ["As an XML representation of the object", "As a JSON-LD graph", "As a comma-separated row", "As a binary blob"],
+    "answerIndex": 0,
+    "explanation": "SIF data objects are serialized as XML, so an Add event carries the object as XML. This ties the API event model to SIF's XML data-model serialization.",
+    "source": "SIF API + transport: XML object payloads"
+  },
+  {
+    "id": "sif-api-005",
+    "spec": "SIF",
+    "layer": "api",
+    "difficulty": "advanced",
+    "concept": "Publish/subscribe",
+    "question": "In SIF's publish/subscribe model, which role makes a SIF data object available so others can receive its events?",
+    "options": [
+      "The subscriber that consumes the events",
+      "The publisher (provider) agent for that object type",
+      "The Zone Integration Server administrator",
+      "The codeset maintainer"
+    ],
+    "answerIndex": 1,
+    "explanation": "In SIF, a publisher (provider) agent supplies a given object type and emits its events; subscriber agents consume them. The Zone Integration Server routes the messages but is not the publisher of the data.",
+    "source": "SIF API: publisher/subscriber roles"
+  }
+]
