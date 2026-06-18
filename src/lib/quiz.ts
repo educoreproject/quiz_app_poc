@@ -152,9 +152,17 @@ function questionWeight(_q: Question, st: QuestionStat | undefined, rng: () => n
  * Deterministic-per-day selection that prioritizes missed questions and weak
  * areas, then fills with fresh material, while keeping spec/layer variety.
  */
-export function selectDaily(state: ProgressState, date: string, size = DAILY_SIZE): string[] {
+export function selectDaily(
+  state: ProgressState,
+  date: string,
+  focusSpecs: SpecKey[] = [],
+  size = DAILY_SIZE,
+): string[] {
   const rng = mulberry32(hashStr('educore-' + date))
-  const scored: Scored[] = QUESTIONS.map((q) => ({
+  // Restrict the candidate pool to the chosen focus specs (all specs when none).
+  const focus = new Set(focusSpecs)
+  const pool = focus.size ? QUESTIONS.filter((q) => focus.has(q.spec)) : QUESTIONS
+  const scored: Scored[] = pool.map((q) => ({
     q,
     weight: questionWeight(q, state.questionStats[q.id], rng),
   }))
@@ -165,7 +173,10 @@ export function selectDaily(state: ProgressState, date: string, size = DAILY_SIZ
 
   const chosen: Question[] = []
   const specCount: Record<string, number> = {}
-  const maxPerSpec = Math.max(2, Math.ceil(size / 5))
+  // Spread across however many specs are in scope; with a narrow focus, allow
+  // more questions per spec so the set still fills.
+  const denom = Math.min(5, focus.size || SPEC_ORDER.length)
+  const maxPerSpec = Math.max(2, Math.ceil(size / denom))
   for (const { q } of ranked) {
     if (chosen.length >= size) break
     if ((specCount[q.spec] || 0) >= maxPerSpec) continue

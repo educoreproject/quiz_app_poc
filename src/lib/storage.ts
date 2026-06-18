@@ -1,5 +1,7 @@
 // ---- Persisted progress model (localStorage) -------------------------------
 
+import type { SpecKey } from './types'
+
 export interface QuestionStat {
   seen: number
   correct: number
@@ -31,6 +33,8 @@ export interface ProgressState {
   daily: DailyState | null
   /** snapshot of overall knowledge score per day, for the trend chart */
   scoreHistory: { date: string; score: number }[]
+  /** specs the learner has chosen to focus the daily quiz on; empty = all specs */
+  focusSpecs: SpecKey[]
 }
 
 const KEY_PREFIX = 'educore-mastery-v1'
@@ -48,6 +52,7 @@ export function emptyState(): ProgressState {
     streak: { current: 0, longest: 0, lastDate: '' },
     daily: null,
     scoreHistory: [],
+    focusSpecs: [],
   }
 }
 

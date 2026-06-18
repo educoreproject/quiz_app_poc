@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { listUsers } from '../lib/auth'
 
 interface LoginProps {
-  onLogin: (name: string) => void
+  onLogin: (name: string, email?: string) => void
 }
 
 export function Login({ onLogin }: LoginProps) {
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const users = listUsers()
   const clean = name.trim()
   const isReturning = users.some((u) => u.toLowerCase() === clean.toLowerCase())
@@ -14,7 +15,7 @@ export function Login({ onLogin }: LoginProps) {
   function submit(e: React.FormEvent) {
     e.preventDefault()
     if (!clean) return
-    onLogin(clean)
+    onLogin(clean, email.trim() || undefined)
   }
 
   return (
@@ -48,6 +49,16 @@ export function Login({ onLogin }: LoginProps) {
           onChange={(e) => setName(e.target.value)}
           aria-label="Name"
         />
+
+        <input
+          className="login-input login-email"
+          type="email"
+          value={email}
+          placeholder="Email (optional)"
+          onChange={(e) => setEmail(e.target.value)}
+          aria-label="Email (optional, for badge credentials)"
+        />
+        <div className="login-hint">Email is optional — used only to personalize earned badge credentials, and stored hashed.</div>
 
         <button className="btn primary block login-btn" type="submit" disabled={!clean}>
           {isReturning ? 'Continue →' : 'Start →'}

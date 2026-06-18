@@ -5,6 +5,7 @@
 
 const USERS_KEY = 'educore-users-v1'
 const ACTIVE_KEY = 'educore-active-user-v1'
+const EMAIL_PREFIX = 'educore-email-v1'
 
 /** All profile names known on this device, in the order they were added. */
 export function listUsers(): string[] {
@@ -59,6 +60,29 @@ export function login(name: string): string {
 export function logout() {
   try {
     localStorage.removeItem(ACTIVE_KEY)
+  } catch {
+    /* ignore */
+  }
+}
+
+// ---- Optional email (used only to mint badge credentials) ------------------
+
+/** The optional email a profile supplied, or '' if none. */
+export function getEmail(user: string): string {
+  try {
+    return localStorage.getItem(`${EMAIL_PREFIX}::${user}`) || ''
+  } catch {
+    return ''
+  }
+}
+
+/** Store (or clear) a profile's optional email. */
+export function setEmail(user: string, email: string) {
+  const key = `${EMAIL_PREFIX}::${user}`
+  try {
+    const clean = email.trim()
+    if (clean) localStorage.setItem(key, clean)
+    else localStorage.removeItem(key)
   } catch {
     /* ignore */
   }

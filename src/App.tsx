@@ -6,8 +6,10 @@ import { ProgressView } from './components/Progress'
 import { Ring } from './components/Ring'
 import { Sparkline } from './components/Sparkline'
 import { Login } from './components/Login'
-import { SPEC_MAP } from './lib/specs'
-import { getActiveUser, login as loginUser, logout } from './lib/auth'
+import { FocusPicker } from './components/FocusPicker'
+import { SPEC_MAP, SPECS } from './lib/specs'
+import { getActiveUser, getEmail, login as loginUser, logout, setEmail } from './lib/auth'
+import { Badges } from './components/Badges'
 import { LAYER_META } from './lib/types'
 import type { Layer, SpecKey } from './lib/types'
 import {
@@ -30,7 +32,7 @@ import {
   selectDrill,
 } from './lib/quiz'
 
-type View = 'dashboard' | 'quiz' | 'results' | 'study' | 'progress'
+type View = 'dashboard' | 'quiz' | 'results' | 'study' | 'progress' | 'badges'
 
 interface Session {
   ids: string[]
@@ -56,7 +58,7 @@ export default function App() {
     if (!user) return
     if (!state.daily || state.daily.date !== today) {
       mutate((s) => {
-        s.daily = { date: today, questionIds: selectDaily(s, today), answers: {}, completed: false }
+        s.daily = { date: today, questionIds: selectDaily(s, today, s.focusSpecs), answers: {}, completed: false }
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,9 +73,10 @@ export default function App() {
     })
   }
 
-  function handleLogin(name: string) {
+  function handleLogin(name: string, email?: string) {
     const canonical = loginUser(name)
     if (!canonical) return
+    if (email) setEmail(canonical, email)
     setUser(canonical)
     setState(loadState(canonical))
     setView('dashboard')
@@ -84,6 +87,14 @@ export default function App() {
     setUser(null)
     setState(emptyState())
     setView('dashboard')
+  }
+
+  // Change which specs the daily quiz focuses on, and regenerate today's set.
+  function setFocus(specs: SpecKey[]) {
+    mutate((s) => {
+      s.focusSpecs = specs
+      s.daily = { date: today, questionIds: selectDaily(s, today, specs), answers: {}, completed: false }
+    })
   }
 
   const cells = useMemo(() => computeCells(state), [state])
@@ -156,6 +167,7 @@ export default function App() {
         <nav className="nav">
           <button className={view === 'dashboard' ? 'on' : ''} onClick={() => setView('dashboard')}>Dashboard</button>
           <button className={view === 'progress' ? 'on' : ''} onClick={() => setView('progress')}>Progress</button>
+          <button className={view === 'badges' ? 'on' : ''} onClick={() => setView('badges')}>Badges</button>
           <div className="streak-pill" title="Daily streak">
             🔥 <b>{streakAlive(state) ? state.streak.current : 0}</b>
           </div>
@@ -175,13 +187,15 @@ export default function App() {
             dailyDone={!!dailyDone}
             dailyAnswered={dailyAnswered}
             dailyTotal={dailyTotal}
+            focusSpecs={state.focusSpecs}
+            onSetFocus={setFocus}
             onStartDaily={startDaily}
             onOpenCell={openCell}
             onReset={() => {
               if (confirm(`Reset all progress and history for ${user}? This cannot be undone.`)) {
                 resetState(user)
                 const fresh = loadState(user)
-                fresh.daily = { date: today, questionIds: selectDaily(fresh, today), answers: {}, completed: false }
+                fresh.daily = { date: today, questionIds: selectDaily(fresh, today, fresh.focusSpecs), answers: {}, completed: false }
                 saveState(user, fresh)
                 setState(fresh)
               }
@@ -229,6 +243,8 @@ export default function App() {
         )}
 
         {view === 'progress' && <ProgressView state={state} cells={cells} />}
+
+        {view === 'badges' && <Badges cells={cells} userName={user} email={getEmail(user)} />}
       </main>
     </div>
   )
@@ -243,19 +259,26 @@ function Dashboard(props: {
   dailyDone: boolean
   dailyAnswered: number
   dailyTotal: number
+  focusSpecs: SpecKey[]
+  onSetFocus: (specs: SpecKey[]) => void
   onStartDaily: () => void
   onOpenCell: (spec: SpecKey, layer: Layer) => void
   onReset: () => void
 }) {
-  const { state, cells, overall, dailyDone, dailyAnswered, dailyTotal, onStartDaily, onOpenCell, onReset } = props
+  const { state, cells, overall, dailyDone, dailyAnswered, dailyTotal, focusSpecs, onSetFocus, onStartDaily, onOpenCell, onReset } = props
 
-  // Surface the weakest started cells as "focus areas".
+  const focusSet = new Set(focusSpecs)
+  const focusNames = SPECS.filter((s) => focusSet.has(s.key)).map((s) => s.name)
+
+  // Surface the weakest started cells as "focus areas" (scoped to chosen specs).
   const focus = useMemo(() => {
     return Object.values(cells)
       .filter((c) => c.total > 0 && (c.missed > 0 || (c.seen > 0 && c.score < 60)))
+      .filter((c) => focusSet.size === 0 || focusSet.has(c.spec))
       .sort((a, b) => b.missed - a.missed || a.score - b.score)
       .slice(0, 4)
-  }, [cells])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cells, focusSpecs])
 
   return (
     <div className="dashboard">
@@ -265,8 +288,15 @@ function Dashboard(props: {
           <p className="hero-sub">
             {dailyDone
               ? 'Daily quiz complete — nice work. Explore your weak spots below or drill any section.'
-              : `A fresh ${dailyTotal}-question set, weighted toward what you’ve missed and haven’t seen.`}
+              : `A fresh ${dailyTotal}-question set, weighted toward what you’ve missed and haven’t seen${
+                  focusNames.length === 0
+                    ? ''
+                    : focusNames.length <= 3
+                      ? `, focused on ${focusNames.join(', ')}`
+                      : `, focused on ${focusSet.size} specs`
+                }.`}
           </p>
+          <FocusPicker value={focusSpecs} onChange={onSetFocus} />
           <div className="hero-cta">
             <button className="btn primary big" onClick={onStartDaily}>
               {dailyDone ? '↻ Replay today’s quiz' : dailyAnswered > 0 ? `Resume (${dailyAnswered}/${dailyTotal})` : "▶ Start today’s quiz"}
