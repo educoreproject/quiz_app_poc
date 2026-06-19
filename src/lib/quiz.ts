@@ -50,7 +50,7 @@ export interface CellStat {
   seen: number // distinct questions attempted
   attempts: number
   correct: number
-  accuracy: number // 0..1 over attempts
+  accuracy: number // 0..1 over distinct seen questions, by their latest answer
   coverage: number // 0..1 distinct seen / total
   /** Blended 0..100 knowledge score; 0 when untouched. */
   score: number
@@ -97,7 +97,11 @@ export function computeCells(state: ProgressState): Record<string, CellStat> {
     }
   }
   for (const c of Object.values(cells)) {
-    c.accuracy = c.attempts > 0 ? c.correct / c.attempts : 0
+    // Accuracy reflects each question's *latest* answer (not a running average
+    // of every attempt), so getting a missed question right later recovers it.
+    // A seen question is either currently correct or currently missed, so
+    // latest-correct = seen − missed.
+    c.accuracy = c.seen > 0 ? (c.seen - c.missed) / c.seen : 0
     c.coverage = c.total > 0 ? c.seen / c.total : 0
     c.score = blendedScore(c.accuracy, c.coverage)
   }
