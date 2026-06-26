@@ -2117,7 +2117,7 @@ export const QUESTIONS: Question[] = [
     "layer": "transport",
     "difficulty": "core",
     "concept": "type / VerifiableCredential",
-    "question": "For an Open Badges AchievementCredential, the 'type' set MUST include 'VerifiableCredential' and which other URI?",
+    "question": "For an Open Badges AchievementCredential, the 'type' set MUST include 'VerifiableCredential' plus which permitted credential type?",
     "options": [
       "'EndorsementCredential'",
       "'AchievementCredential' or 'OpenBadgeCredential'",

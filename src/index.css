@@ -268,6 +268,9 @@ body {
 .explain-head { font-weight: 800; margin-bottom: 6px; }
 .explain p { margin: 0; line-height: 1.55; color: #dfe5f3; }
 .explain-src { margin-top: 10px; font-size: 12px; color: var(--muted); font-family: ui-monospace, monospace; }
+.show-me { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 7px 13px; border-radius: 9px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent-2); font-size: 13px; font-weight: 700; text-decoration: none; transition: background .15s ease, transform .15s ease; }
+.show-me:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); transform: translateX(2px); }
+.narrative-para .show-me { margin-top: 12px; }
 .quiz-actions { margin-top: 20px; display: flex; justify-content: flex-end; }
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 

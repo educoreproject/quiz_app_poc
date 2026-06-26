@@ -209,7 +209,7 @@
     "layer": "transport",
     "difficulty": "challenge",
     "concept": "type / VerifiableCredential",
-    "question": "For an Open Badges AchievementCredential, the 'type' set MUST include 'VerifiableCredential' and which other URI?",
+    "question": "For an Open Badges AchievementCredential, the 'type' set MUST include 'VerifiableCredential' plus which permitted credential type?",
     "options": ["'EndorsementCredential'", "'AchievementCredential' or 'OpenBadgeCredential'", "'Profile'", "'CredentialSchema'"],
     "answerIndex": 1,
     "explanation": "The type set must include 'VerifiableCredential' plus either 'AchievementCredential' or 'OpenBadgeCredential'.",

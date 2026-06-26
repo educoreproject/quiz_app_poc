@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { QUESTION_BY_ID } from '../lib/quiz'
-import { SPEC_MAP } from '../lib/specs'
+import { SPEC_MAP, specSectionUrl } from '../lib/specs'
 import { LAYER_META } from '../lib/types'
 
 export interface QuizResult {
@@ -106,6 +106,16 @@ export function Quiz({ questionIds, title, onAnswer, onComplete, onExit }: QuizP
             <div className="explain-head">{isCorrect ? '✓ Correct' : '✕ Not quite'}</div>
             <p>{q.explanation}</p>
             {q.source && <div className="explain-src">Source: {q.source}</div>}
+            {!isCorrect && (
+              <a
+                className="show-me"
+                href={specSectionUrl(q.spec, q.concept)}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                🔎 Show me in the {spec.name} spec →
+              </a>
+            )}
           </div>
         )}
       </div>

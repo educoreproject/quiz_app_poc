@@ -198,3 +198,19 @@ export const SPECS: SpecMeta[] = [
 export const SPEC_MAP: Record<SpecKey, SpecMeta> = Object.fromEntries(
   SPECS.map((s) => [s.key, s]),
 ) as Record<SpecKey, SpecMeta>
+
+/**
+ * Best-effort deep link to the part of a spec a question is about. We append a
+ * scroll-to-text-fragment (`#:~:text=`) built from the question's concept, so
+ * supporting browsers jump straight to the matching passage and others simply
+ * load the spec page. Skipped when the canonical URL already targets a fragment.
+ */
+export function specSectionUrl(spec: SpecKey, concept?: string): string {
+  const meta = SPEC_MAP[spec]
+  if (!meta) return '#'
+  const phrase = concept?.trim()
+  if (phrase && !meta.specUrl.includes('#')) {
+    return `${meta.specUrl}#:~:text=${encodeURIComponent(phrase)}`
+  }
+  return meta.specUrl
+}

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { SPEC_MAP } from '../lib/specs'
+import { SPEC_MAP, specSectionUrl } from '../lib/specs'
 import { LAYER_META } from '../lib/types'
 import type { Layer, SpecKey } from '../lib/types'
 import {
@@ -78,6 +78,14 @@ export function Study({ spec, layer, state, cells, onDrill, onClose }: StudyProp
                 <div className="narrative-para" key={p.concept}>
                   <h3>{p.concept}</h3>
                   <p>{p.text}</p>
+                  <a
+                    className="show-me"
+                    href={specSectionUrl(spec, p.concept)}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    🔎 Show me in the {meta.name} spec →
+                  </a>
                 </div>
               ))}
             </>
