@@ -183,6 +183,16 @@ export const SPECS: SpecMeta[] = [
     layers: ['data-model', 'transport', 'api'],
     formats: ['XML', 'SOAP'],
   },
+  {
+    key: 'SkillsProf',
+    name: 'Skills Proficiency',
+    tagline: 'Skills Proficiency API — skill assertions expressed against an explicit proficiency scale, with performance & proficiency context.',
+    publisher: 'HR Open Standards',
+    color: '#f97316',
+    specUrl: 'https://hropenstandards.org/',
+    layers: ['data-model', 'transport', 'api'],
+    formats: ['JSON', 'JSON-LD', 'OpenAPI'],
+  },
 ]
 
 export const SPEC_MAP: Record<SpecKey, SpecMeta> = Object.fromEntries(

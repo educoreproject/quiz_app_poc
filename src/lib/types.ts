@@ -21,6 +21,7 @@ export type SpecKey =
   | 'SEDM'
   | 'DCTAP'
   | 'MedBiquitous'
+  | 'SkillsProf'
 
 export type Difficulty = 'intro' | 'core' | 'advanced'
 

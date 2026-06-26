@@ -1,0 +1,203 @@
+[
+  {
+    "id": "skillsprof-dm-001",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SkillAssertionCollection",
+    "question": "Which three properties are required on a SkillAssertionCollection in the Skills Proficiency API?",
+    "options": [
+      "identifier, targetType, assertions",
+      "identifier, proficiencyScale, source",
+      "skill, proficiencyLevel, source",
+      "targetType, proficiencyScale, assertions"
+    ],
+    "answerIndex": 0,
+    "explanation": "SkillAssertionCollection requires identifier (the target object's URI), targetType, and the assertions array. proficiencyScale is optional on the collection.",
+    "source": "openapi.json: components.schemas.SkillAssertionCollection.required"
+  },
+  {
+    "id": "skillsprof-dm-002",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Target Types",
+    "question": "Which of the following is NOT one of the allowed targetType values for a skill assertion collection?",
+    "options": ["JobRole", "Assessment", "Credential", "LearningProgram"],
+    "answerIndex": 2,
+    "explanation": "The targetType enum is Job, Person, JobRole, Assessment, Framework, LearningProgram, and Other. 'Credential' is not in the enumeration.",
+    "source": "openapi.json: getSkills.parameters.targetType.enum"
+  },
+  {
+    "id": "skillsprof-dm-003",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "SkillAssertion",
+    "question": "What are the only two required properties on a SkillAssertion?",
+    "options": [
+      "skill and proficiencyLevel",
+      "skill and source",
+      "proficiencyLevel and performanceContext",
+      "skill and proficiencyContext"
+    ],
+    "answerIndex": 0,
+    "explanation": "A SkillAssertion requires skill and proficiencyLevel. performanceContext, proficiencyContext, and source are all optional.",
+    "source": "openapi.json: components.schemas.SkillAssertion.required"
+  },
+  {
+    "id": "skillsprof-dm-004",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "ProficiencyLevel",
+    "question": "In a ProficiencyLevel, what does the required 'rank' property represent?",
+    "options": [
+      "A free-text label for the level",
+      "The ordinal position within the proficiency scale",
+      "A confidence percentage in the assertion",
+      "The URI of the rubric the level came from"
+    ],
+    "answerIndex": 1,
+    "explanation": "rank is a required integer giving the ordinal position of the level within the proficiency scale; name is the other required field.",
+    "source": "openapi.json: components.schemas.ProficiencyLevel.rank"
+  },
+  {
+    "id": "skillsprof-dm-005",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "core",
+    "concept": "Skill",
+    "question": "Which property of a Skill object carries an optional code or notation from a specific competency framework?",
+    "options": ["id", "codedNotation", "description", "name"],
+    "answerIndex": 1,
+    "explanation": "codedNotation is the optional code/notation for the skill within a framework. The required fields are id (a URI in an external taxonomy) and name.",
+    "source": "openapi.json: components.schemas.Skill.codedNotation"
+  },
+  {
+    "id": "skillsprof-dm-006",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Proficiency Scale",
+    "question": "What is the role of the proficiencyScale property on a SkillAssertionCollection?",
+    "options": [
+      "It ranks the assertions from strongest to weakest",
+      "It is a URI identifying the scale all proficiency levels in the collection are defined against",
+      "It lists every allowed proficiencyLevel name",
+      "It stores the source organization for the collection"
+    ],
+    "answerIndex": 1,
+    "explanation": "proficiencyScale is a URI identifying the scale against which all proficiency levels in the collection are defined; the scale may itself reference external rubric models such as CEDS or CASE.",
+    "source": "openapi.json: SkillAssertionCollection.proficiencyScale"
+  },
+  {
+    "id": "skillsprof-dm-007",
+    "spec": "SkillsProf",
+    "layer": "data-model",
+    "difficulty": "advanced",
+    "concept": "Context References",
+    "question": "How do performanceContext and proficiencyContext differ on a SkillAssertion?",
+    "options": [
+      "performanceContext is a single URI; proficiencyContext is an array",
+      "performanceContext is an array of URIs for the situation of demonstration; proficiencyContext is a single URI to a rubric criterion level",
+      "Both are arrays of free-text strings",
+      "They are interchangeable aliases for the same field"
+    ],
+    "answerIndex": 1,
+    "explanation": "performanceContext is an array of URIs describing the situational context in which the skill was demonstrated or assessed; proficiencyContext is a single URI referencing an external rubric criterion level (e.g., CEDS, CASE, ASN, SCD).",
+    "source": "openapi.json: SkillAssertion.performanceContext / proficiencyContext"
+  },
+  {
+    "id": "skillsprof-tr-001",
+    "spec": "SkillsProf",
+    "layer": "transport",
+    "difficulty": "core",
+    "concept": "JSON-LD Context",
+    "question": "The Skills Proficiency JSON-LD context (context-v1.json) extends which base context?",
+    "options": [
+      "schema.org core context",
+      "the Open Badges v3.0 context",
+      "the W3C Verifiable Credentials v2 context",
+      "the CASE 1.1 context"
+    ],
+    "answerIndex": 1,
+    "explanation": "The context array begins with the Open Badges v3p0 context (context-3.0.3.json), then layers the Skills Proficiency terms on top using schema.org mappings.",
+    "source": "context-v1.json: @context[0]"
+  },
+  {
+    "id": "skillsprof-tr-002",
+    "spec": "SkillsProf",
+    "layer": "transport",
+    "difficulty": "advanced",
+    "concept": "Term Mapping",
+    "question": "In the JSON-LD context, the SkillAssertion type is mapped to which schema.org term?",
+    "options": ["schema:DefinedTerm", "schema:PropertyValue", "schema:Collection", "schema:Organization"],
+    "answerIndex": 1,
+    "explanation": "SkillAssertion is mapped to schema:PropertyValue. The collection maps to schema:Collection, while Skill and ProficiencyLevel map to schema:DefinedTerm.",
+    "source": "context-v1.json: SkillAssertion @id schema:PropertyValue"
+  },
+  {
+    "id": "skillsprof-tr-003",
+    "spec": "SkillsProf",
+    "layer": "transport",
+    "difficulty": "advanced",
+    "concept": "Term Mapping",
+    "question": "Within a SkillAssertion, the 'skill' property is mapped to which schema.org property in the JSON-LD context?",
+    "options": ["schema:about", "schema:hasDefinedTerm", "schema:provider", "schema:isBasedOn"],
+    "answerIndex": 0,
+    "explanation": "skill maps to schema:about (typed as an @id). proficiencyLevel maps to schema:hasDefinedTerm, source to schema:provider, and proficiencyContext to schema:isBasedOn.",
+    "source": "context-v1.json: SkillAssertion.skill @id schema:about"
+  },
+  {
+    "id": "skillsprof-api-001",
+    "spec": "SkillsProf",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Endpoints",
+    "question": "Which HTTP operation does the Skills Proficiency API define for retrieving skill assertions?",
+    "options": [
+      "POST /assertions",
+      "GET /skills",
+      "GET /proficiency",
+      "PUT /skills/{id}"
+    ],
+    "answerIndex": 1,
+    "explanation": "The API exposes a single GET /skills operation (operationId getSkills) that returns the skill assertions associated with a target object.",
+    "source": "openapi.json: paths./skills.get (getSkills)"
+  },
+  {
+    "id": "skillsprof-api-002",
+    "spec": "SkillsProf",
+    "layer": "api",
+    "difficulty": "core",
+    "concept": "Query Parameters",
+    "question": "Which two query parameters are required on GET /skills?",
+    "options": [
+      "identifier and targetType",
+      "skill and proficiencyLevel",
+      "identifier and proficiencyScale",
+      "targetType and source"
+    ],
+    "answerIndex": 0,
+    "explanation": "GET /skills requires identifier (a globally unique URI for the target object) and targetType (the kind of object the identifier refers to).",
+    "source": "openapi.json: getSkills.parameters (identifier, targetType required)"
+  },
+  {
+    "id": "skillsprof-api-003",
+    "spec": "SkillsProf",
+    "layer": "api",
+    "difficulty": "advanced",
+    "concept": "Responses",
+    "question": "What does a 200 response from GET /skills return?",
+    "options": [
+      "A single SkillAssertion",
+      "A SkillAssertionCollection",
+      "An array of ProficiencyLevel objects",
+      "A plain list of skill names"
+    ],
+    "answerIndex": 1,
+    "explanation": "The 200 response body is a SkillAssertionCollection — the target's identifier and targetType plus its array of assertions (and an optional proficiencyScale).",
+    "source": "openapi.json: getSkills.responses.200 -> SkillAssertionCollection"
+  }
+]

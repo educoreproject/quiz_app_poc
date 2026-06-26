@@ -9,6 +9,7 @@ const rawDir = join(root, 'src', 'data', 'raw')
 const SPECS = new Set([
   'CEDS', 'SIF', 'Ed-Fi', 'PESC', 'CTDL', 'CLR', 'OpenBadges', 'Ed-API',
   'CASE', 'LIF', 'JEDx', 'SOC', 'CIP', 'SEDM', 'DCTAP', 'MedBiquitous',
+  'SkillsProf',
 ])
 const LAYERS = new Set(['data-model', 'transport', 'api'])
 const DIFFS = new Set(['intro', 'core', 'advanced'])
